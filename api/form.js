@@ -7,46 +7,33 @@ export default async function handler(req, res) {
     const supabaseKey = process.env.SUPABASE_SERVICE_KEY;
 
     if (!supabaseUrl || !supabaseKey) {
-        console.error("Supabase não configurado.");
+        console.error("Supabase não configurado nos segredos do Vercel.");
         return res.status(500).json({
-            error: "Supabase não configurado"
+            error: "Supabase não configurado no servidor"
         });
     }
 
     try {
-        const { nps, q2, q3, q4, q5, q6, freeText, timestamp, pageUrl } = req.body || {};
+        const { acompanhante, vibe, orcamento, periodos, dias, roteiro_gerado } = req.body || {};
 
-        const npsNumber = Number(nps);
-
-        if (!Number.isInteger(npsNumber) || npsNumber < 0 || npsNumber > 10) {
+        // Validação básica dos dados essenciais
+        if (!acompanhante || !orcamento || !dias || !roteiro_gerado) {
             return res.status(400).json({
-                error: "NPS inválido"
+                error: "Dados incompletos. Preencha o questionário completo."
             });
         }
 
         const row = {
-            nps: npsNumber,
-            experiencia_uso: q2 || null,
-            credibilidade: q3 || null,
-            design: q4 || null,
-            motivo_compra: Array.isArray(q5) ? q5 : [],
-            friccao: q6 || null,
-            comentario: freeText || null,
-            pagina: pageUrl || null,
-            user_agent: req.headers["user-agent"] || null,
-            raw_payload: {
-                nps,
-                q2,
-                q3,
-                q4,
-                q5,
-                q6,
-                freeText,
-                timestamp: timestamp || new Date().toISOString()
-            }
+            acompanhante: String(acompanhante),
+            vibe: Array.isArray(vibe) ? vibe : [],
+            orcamento: String(orcamento),
+            periodos: Array.isArray(periodos) ? periodos : [],
+            dias: Number(dias) || 1,
+            roteiro_gerado: typeof roteiro_gerado === "object" ? roteiro_gerado : JSON.parse(roteiro_gerado),
+            user_agent: req.headers["user-agent"] || null
         };
 
-        const response = await fetch(`${supabaseUrl}/rest/v1/avaliacoes`, {
+        const response = await fetch(`${supabaseUrl}/rest/v1/roteiros_personalizados`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -59,7 +46,7 @@ export default async function handler(req, res) {
 
         if (!response.ok) {
             const details = await response.text();
-            console.error("Erro Supabase:", details);
+            console.error("Erro ao inserir no Supabase:", details);
 
             return res.status(500).json({
                 error: "Erro ao salvar no Supabase",
@@ -69,13 +56,14 @@ export default async function handler(req, res) {
 
         return res.status(200).json({
             success: true,
-            message: "Avaliação salva no Supabase"
+            message: "Roteiro personalizado salvo com sucesso!"
         });
     } catch (error) {
-        console.error("Erro no form:", error);
+        console.error("Erro interno no formulário:", error);
 
         return res.status(500).json({
-            error: "Erro interno ao processar formulário"
+            error: "Erro interno ao processar e salvar o roteiro"
         });
     }
 }
+

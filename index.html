@@ -316,6 +316,417 @@ footer{background:var(--black);color:var(--white);padding:5rem 3.5rem 2.5rem;bor
   .estacoes-grid{grid-template-columns:1fr}
   .vocab-grid{grid-template-columns:1fr}
 }
+
+/* ──────────────────────────────────────────────────
+   ROTEIRO PERSONALIZADO MODAL STYLES
+   ────────────────────────────────────────────────── */
+.roteiro-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(8, 8, 8, 0.75);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.roteiro-modal.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+.roteiro-modal-content {
+  background: rgba(18, 18, 18, 0.96);
+  border: 1px solid rgba(200, 0, 30, 0.25);
+  width: 100%;
+  max-width: 680px;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  color: var(--white);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5), 0 0 40px rgba(200, 0, 30, 0.15);
+  transform: scale(0.94) translateY(15px);
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 20px 100%, 0 calc(100% - 20px));
+}
+.roteiro-modal.active .roteiro-modal-content {
+  transform: scale(1) translateY(0);
+}
+
+.modal-header {
+  padding: 1.8rem 2.2rem 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+.modal-title {
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: var(--white);
+}
+.modal-title span {
+  color: var(--red);
+}
+.modal-close {
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 1.8rem;
+  cursor: pointer;
+  transition: color 0.2s, transform 0.2s;
+}
+.modal-close:hover {
+  color: var(--red);
+  transform: rotate(90deg);
+}
+
+.modal-body {
+  padding: 2rem 2.2rem;
+  overflow-y: auto;
+  flex: 1;
+  scrollbar-width: thin;
+  scrollbar-color: var(--red) var(--black);
+}
+.modal-body::-webkit-scrollbar {
+  width: 4px;
+}
+.modal-body::-webkit-scrollbar-track {
+  background: var(--black);
+}
+.modal-body::-webkit-scrollbar-thumb {
+  background: var(--red);
+}
+
+.modal-footer {
+  padding: 1.3rem 2.2rem 1.6rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(12, 12, 12, 0.95);
+}
+
+/* PROGRESS BAR */
+.progress-container {
+  width: 100%;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.1);
+  position: relative;
+}
+.progress-bar {
+  height: 100%;
+  background: var(--red);
+  width: 20%;
+  transition: width 0.3s ease;
+}
+
+/* STEPS */
+.modal-step {
+  display: none;
+  animation: modalStepFade 0.4s ease forwards;
+}
+.modal-step.active {
+  display: block;
+}
+@keyframes modalStepFade {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.step-question {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 0.6rem;
+  letter-spacing: 0.02em;
+}
+.step-subtitle {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.5);
+  margin-bottom: 1.8rem;
+  font-weight: 300;
+}
+
+/* OPTION CARD GRIDS */
+.option-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+.option-grid.triple {
+  grid-template-columns: repeat(3, 1fr);
+}
+.option-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 1.25rem;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
+}
+.option-card:hover {
+  background: rgba(200, 0, 30, 0.05);
+  border-color: rgba(200, 0, 30, 0.4);
+  transform: translateY(-2px);
+}
+.option-card.selected {
+  background: rgba(200, 0, 30, 0.15);
+  border-color: var(--red);
+  box-shadow: 0 0 15px rgba(200, 0, 30, 0.2);
+}
+.option-icon {
+  font-size: 1.8rem;
+  margin-bottom: 0.6rem;
+}
+.option-title {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  margin-bottom: 0.25rem;
+}
+.option-desc {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.45);
+  line-height: 1.4;
+  font-weight: 300;
+}
+
+/* BUTTONS */
+.btn-nav {
+  padding: 0.75rem 1.8rem;
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s;
+  clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));
+}
+.btn-back {
+  background: rgba(255, 255, 255, 0.05);
+  color: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+.btn-back:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--white);
+}
+.btn-next {
+  background: var(--red);
+  color: var(--white);
+}
+.btn-next:hover {
+  background: var(--red-light);
+  transform: translateY(-1px);
+}
+.btn-next:disabled {
+  background: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.3);
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* LOADING STATE */
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 0;
+  text-align: center;
+}
+.loading-spinner {
+  width: 50px;
+  height: 50px;
+  border: 3px solid rgba(200, 0, 30, 0.2);
+  border-top-color: var(--red);
+  border-radius: 50%;
+  animation: modalSpin 1s linear infinite;
+  margin-bottom: 1.5rem;
+}
+@keyframes modalSpin {
+  to { transform: rotate(360deg); }
+}
+.loading-text {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+.loading-subtext {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+/* RESULTS PANEL */
+.results-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(200, 0, 30, 0.08);
+  border: 1px solid rgba(200, 0, 30, 0.2);
+  padding: 1rem 1.5rem;
+  margin-bottom: 2rem;
+  clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 20px));
+}
+.match-score {
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  font-weight: 900;
+  color: var(--red);
+}
+.match-score span {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--white);
+  margin-left: 0.5rem;
+}
+.match-label {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.6);
+  text-align: right;
+}
+
+.itinerary-day {
+  margin-bottom: 2rem;
+}
+.day-title {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: var(--red);
+  border-bottom: 2px solid rgba(200, 0, 30, 0.3);
+  padding-bottom: 0.4rem;
+  margin-bottom: 1rem;
+}
+.day-slots {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.itinerary-slot {
+  display: flex;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 1rem;
+  gap: 1rem;
+  align-items: center;
+  clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));
+}
+.slot-time-badge {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 0.3rem 0.6rem;
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: rgba(255, 255, 255, 0.7);
+  white-space: nowrap;
+}
+.slot-info {
+  flex: 1;
+}
+.slot-name {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  margin-bottom: 0.2rem;
+  color: var(--white);
+}
+.slot-cat {
+  font-size: 0.75rem;
+  color: var(--red);
+  font-weight: 500;
+  text-transform: uppercase;
+  margin-bottom: 0.2rem;
+}
+.slot-desc {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.55);
+  font-weight: 300;
+  line-height: 1.4;
+}
+
+.logistics-alert {
+  background: rgba(200, 0, 30, 0.08);
+  border-left: 3px solid var(--red);
+  padding: 0.8rem 1.2rem;
+  margin-top: 1rem;
+  font-size: 0.8rem;
+  line-height: 1.4;
+  color: rgba(255, 255, 255, 0.85);
+  font-weight: 300;
+  clip-path: polygon(0 0, calc(100% - 5px) 0, 100% 5px, 100% 100%, 5px 100%, 0 calc(100% - 5px));
+}
+.logistics-alert strong {
+  color: var(--red);
+}
+
+.api-status {
+  margin-top: 1.5rem;
+  font-size: 0.8rem;
+  text-align: center;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+}
+.api-status.success {
+  background: rgba(40, 167, 69, 0.1);
+  color: #28a745;
+  border: 1px solid rgba(40, 167, 69, 0.2);
+}
+.api-status.error {
+  background: rgba(220, 53, 69, 0.1);
+  color: #dc3545;
+  border: 1px solid rgba(220, 53, 69, 0.2);
+}
+
+/* MEDIA QUERIES FOR MODAL */
+@media(max-width: 600px) {
+  .roteiro-modal-content {
+    max-height: 95vh;
+  }
+  .modal-header {
+    padding: 1.2rem 1.5rem;
+  }
+  .modal-body {
+    padding: 1.5rem;
+  }
+  .modal-footer {
+    padding: 1rem 1.5rem 1.5rem;
+  }
+  .option-grid {
+    grid-template-columns: 1fr;
+  }
+  .option-grid.triple {
+    grid-template-columns: 1fr;
+  }
+  .step-question {
+    font-size: 1.3rem;
+  }
+}
 </style>
 </head>
 <body>
@@ -1310,7 +1721,7 @@ footer{background:var(--black);color:var(--white);padding:5rem 3.5rem 2.5rem;bor
   <div class="map-left">
     <h2 class="map-big-title">MONTE SEU<span class="giant">ROTEIRO</span>DO SEU JEITO</h2>
     <p class="map-desc">Escolha seus interesses, o tempo disponível e o orçamento. A gente monta o roteiro ideal pra você aproveitar São Paulo do seu modo.</p>
-    <button class="btn-primary" onclick="alert('Em breve: gerador de roteiros personalizado!')">Criar meu roteiro →</button>
+    <button class="btn-primary" onclick="openRoteiroModal()">Criar meu roteiro →</button>
   </div>
   <div class="map-right">
     <div class="map-grid"></div>
@@ -1514,6 +1925,186 @@ footer{background:var(--black);color:var(--white);padding:5rem 3.5rem 2.5rem;bor
   </div>
 </footer>
 
+<!-- ──────────────────────────────────────────────────
+     ROTEIRO PERSONALIZADO MODAL HTML
+     ────────────────────────────────────────────────── -->
+<div class="roteiro-modal" id="roteiroModal">
+  <div class="roteiro-modal-content">
+    
+    <!-- Progress Bar -->
+    <div class="progress-container" id="modalProgressContainer">
+      <div class="progress-bar" id="modalProgressBar" style="width: 20%;"></div>
+    </div>
+    
+    <!-- Header -->
+    <div class="modal-header">
+      <div class="modal-title">Monte seu <span>Roteiro</span></div>
+      <button class="modal-close" onclick="closeRoteiroModal()">&times;</button>
+    </div>
+    
+    <!-- Body containing the multi-step form -->
+    <div class="modal-body">
+      
+      <!-- Passo 1: Acompanhante -->
+      <div class="modal-step active" data-step="1">
+        <h3 class="step-question">Com quem você vai explorar SP?</h3>
+        <p class="step-subtitle">Escolha o seu perfil de acompanhante para que possamos adequar os locais.</p>
+        <div class="option-grid">
+          <div class="option-card" onclick="selectOption('acompanhante', 'sozinho', this)">
+            <div class="option-icon">👤</div>
+            <div class="option-title">Sozinho(a)</div>
+            <div class="option-desc">Uma jornada de autodescoberta e liberdade pelo ritmo de SP.</div>
+          </div>
+          <div class="option-card" onclick="selectOption('acompanhante', 'casal', this)">
+            <div class="option-icon">👩‍❤️‍👨</div>
+            <div class="option-title">Em Casal</div>
+            <div class="option-desc">Encontros românticos, vistas charmosas e restaurantes intimistas.</div>
+          </div>
+          <div class="option-card" onclick="selectOption('acompanhante', 'amigos', this)">
+            <div class="option-icon">👥</div>
+            <div class="option-title">Com Amigos</div>
+            <div class="option-desc">Bares, vida noturna agitada, arte de rua e rolês culturais.</div>
+          </div>
+          <div class="option-card" onclick="selectOption('acompanhante', 'familia', this)">
+            <div class="option-icon">👨‍👩‍👧‍👦</div>
+            <div class="option-title">Em Família</div>
+            <div class="option-desc">Parques tranquilos, museus interativos e ótimas opções para todas as idades.</div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Passo 2: Vibes / Interesses (Multi) -->
+      <div class="modal-step" data-step="2">
+        <h3 class="step-question">O que você mais quer curtir em SP?</h3>
+        <p class="step-subtitle">Selecione uma ou mais vibes que definem o seu interesse nessa viagem.</p>
+        <div class="option-grid">
+          <div class="option-card" onclick="toggleMultiOption('vibe', 'natureza', this)">
+            <div class="option-icon">🌿</div>
+            <div class="option-title">Parques & Ar Livre</div>
+            <div class="option-desc">Oasis urbanos, trilhas e muito verde em meio aos arranha-céus.</div>
+          </div>
+          <div class="option-card" onclick="toggleMultiOption('vibe', 'cultura', this)">
+            <div class="option-icon">🏛️</div>
+            <div class="option-title">Cultura & História</div>
+            <div class="option-desc">Museus de classe mundial, arquitetura e fatos históricos de SP.</div>
+          </div>
+          <div class="option-card" onclick="toggleMultiOption('vibe', 'gastronomia', this)">
+            <div class="option-icon">🍕</div>
+            <div class="option-title">Gastronomia</div>
+            <div class="option-desc">De comidas populares no Mercadão a experiências de luxo.</div>
+          </div>
+          <div class="option-card" onclick="toggleMultiOption('vibe', 'noite', this)">
+            <div class="option-icon">🍹</div>
+            <div class="option-title">Vida Noturna & Música</div>
+            <div class="option-desc">Os melhores bares de samba, baladas e cervejarias artesanais.</div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Passo 3: Orçamento (Single) -->
+      <div class="modal-step" data-step="3">
+        <h3 class="step-question">Qual o orçamento planejado?</h3>
+        <p class="step-subtitle">Isso nos ajuda a sugerir locais que cabem perfeitamente no seu bolso.</p>
+        <div class="option-grid triple">
+          <div class="option-card" onclick="selectOption('orcamento', 'gratis', this)">
+            <div class="option-icon">💰</div>
+            <div class="option-title">Econômico</div>
+            <div class="option-desc">Foco em museus gratuitos, parques e padarias populares.</div>
+          </div>
+          <div class="option-card" onclick="selectOption('orcamento', 'medio', this)">
+            <div class="option-icon">💵</div>
+            <div class="option-title">Moderado</div>
+            <div class="option-desc">Equilíbrio com Uber, museus pagos e bons restaurantes casuais.</div>
+          </div>
+          <div class="option-card" onclick="selectOption('orcamento', 'premium', this)">
+            <div class="option-icon">💳</div>
+            <div class="option-title">Premium</div>
+            <div class="option-desc">O melhor da alta gastronomia e experiências luxuosas de SP.</div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Passo 4: Período (Multi) -->
+      <div class="modal-step" data-step="4">
+        <h3 class="step-question">Qual horário prefere passear?</h3>
+        <p class="step-subtitle">Você quer aproveitar a luz do dia ou o agito da noite paulistana? (Selecione ao menos um)</p>
+        <div class="option-grid">
+          <div class="option-card" onclick="toggleMultiOption('periodo', 'dia', this)">
+            <div class="option-icon">☀️</div>
+            <div class="option-title">Durante o Dia</div>
+            <div class="option-desc">Parques, museus diurnos, cafés e feiras ao ar livre.</div>
+          </div>
+          <div class="option-card" onclick="toggleMultiOption('periodo', 'noite', this)">
+            <div class="option-icon">🌙</div>
+            <div class="option-title">À Noite / Madrugada</div>
+            <div class="option-desc">Vida noturna em Vila Madalena, jantares românticos e vistas urbanas iluminadas.</div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Passo 5: Duração (Single) -->
+      <div class="modal-step" data-step="5">
+        <h3 class="step-question">Quantos dias dura o roteiro?</h3>
+        <p class="step-subtitle">Duração da sua estadia para programar a distribuição perfeita de atividades.</p>
+        <div class="option-grid triple">
+          <div class="option-card" onclick="selectOption('dias', '1', this)">
+            <div class="option-icon">⚡</div>
+            <div class="option-title">1 Dia</div>
+            <div class="option-desc">Foco intenso nas principais joias de SP.</div>
+          </div>
+          <div class="option-card" onclick="selectOption('dias', '2', this)">
+            <div class="option-icon">🗓️</div>
+            <div class="option-title">2 Dias</div>
+            <div class="option-desc">Um fim de semana completo com cultura e lazer.</div>
+          </div>
+          <div class="option-card" onclick="selectOption('dias', '3', this)">
+            <div class="option-icon">🚀</div>
+            <div class="option-title">3 Dias</div>
+            <div class="option-desc">Uma verdadeira imersão nas diversas zonas da cidade.</div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Tela de Carregamento (Loading) -->
+      <div class="modal-step" id="stepLoading">
+        <div class="loading-container">
+          <div class="loading-spinner"></div>
+          <div class="loading-text" id="loadingText">Analisando suas respostas...</div>
+          <div class="loading-subtext">Nossa inteligência está filtrando as melhores atrações e otimizando a logística de trânsito.</div>
+        </div>
+      </div>
+      
+      <!-- Tela de Resultados (Itinerário Gerado) -->
+      <div class="modal-step" id="stepResults">
+        <div class="results-header">
+          <div>
+            <div class="modal-title" style="font-size: 1.5rem;">Seu Roteiro <span>Ideal</span></div>
+            <p class="step-subtitle" style="margin-bottom: 0;" id="resultsMeta">Para 1 pessoa · 2 dias · Orçamento moderado</p>
+          </div>
+          <div class="match-label">
+            <div class="match-score" id="matchScoreVal">98%</div>
+            <div style="font-size: 0.75rem; color: rgba(255, 255, 255, 0.45);">de Match de Perfil</div>
+          </div>
+        </div>
+        
+        <!-- Local onde os dias do roteiro serão injetados pelo JS -->
+        <div id="itineraryContainer"></div>
+        
+        <!-- Mensagem de status do salvamento no Supabase -->
+        <div id="apiStatusMessage" class="api-status" style="display:none;"></div>
+      </div>
+      
+    </div>
+    
+    <!-- Footer com botões de navegação -->
+    <div class="modal-footer" id="modalFooter">
+      <button class="btn-nav btn-back" id="btnBack" onclick="prevStep()" style="visibility: hidden;">Voltar</button>
+      <button class="btn-nav btn-next" id="btnNext" onclick="nextStep()" disabled>Continuar</button>
+    </div>
+    
+  </div>
+</div>
+
 <script>
 // ─── PLACES DATA ───
 const places=[
@@ -1597,6 +2188,472 @@ function toggleBairro(header){
 
 // ─── NAV SCROLL ───
 window.addEventListener('scroll',()=>{document.getElementById('mainNav').classList.toggle('scrolled',window.scrollY>80)});
+
+// ─── ROTEIRO PERSONALIZADO QUESTIONNAIRE LOGIC ───
+let currentStep = 1;
+const questionnaireData = {
+  acompanhante: '',
+  vibe: [],
+  orcamento: '',
+  periodo: [],
+  dias: ''
+};
+
+function openRoteiroModal() {
+  document.getElementById('roteiroModal').classList.add('active');
+  document.body.style.overflow = 'hidden'; // Evita scroll na página de fundo
+  resetQuestionnaire();
+}
+
+function closeRoteiroModal() {
+  document.getElementById('roteiroModal').classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+function resetQuestionnaire() {
+  currentStep = 1;
+  questionnaireData.acompanhante = '';
+  questionnaireData.vibe = [];
+  questionnaireData.orcamento = '';
+  questionnaireData.periodo = [];
+  questionnaireData.dias = '';
+  
+  // Limpar seleções visuais
+  document.querySelectorAll('.option-card').forEach(card => card.classList.remove('selected'));
+  
+  // Reiniciar visibilidade dos passos
+  showStep(1);
+  
+  // Esconder mensagens
+  document.getElementById('apiStatusMessage').style.display = 'none';
+  document.getElementById('itineraryContainer').innerHTML = '';
+}
+
+function showStep(step) {
+  currentStep = step;
+  
+  // Alternar classes active nos passos HTML
+  document.querySelectorAll('.modal-step').forEach(el => {
+    el.classList.remove('active');
+  });
+  
+  const targetStepEl = document.querySelector(`.modal-step[data-step="${step}"]`);
+  if (targetStepEl) targetStepEl.classList.add('active');
+  
+  // Atualizar barra de progresso
+  const totalSteps = 5;
+  const progressPercent = (step / totalSteps) * 100;
+  document.getElementById('modalProgressBar').style.width = `${progressPercent}%`;
+  
+  // Configurar botões de navegação
+  const btnBack = document.getElementById('btnBack');
+  const btnNext = document.getElementById('btnNext');
+  
+  if (step === 1) {
+    btnBack.style.visibility = 'hidden';
+  } else {
+    btnBack.style.visibility = 'visible';
+  }
+  
+  if (step === 5) {
+    btnNext.textContent = 'Gerar Roteiro';
+  } else {
+    btnNext.textContent = 'Continuar';
+  }
+  
+  // Verificar se o passo atual já possui valor selecionado para habilitar o Continuar
+  validateStep(step);
+}
+
+function validateStep(step) {
+  const btnNext = document.getElementById('btnNext');
+  let isValid = false;
+  
+  switch(step) {
+    case 1:
+      isValid = !!questionnaireData.acompanhante;
+      break;
+    case 2:
+      isValid = questionnaireData.vibe.length > 0;
+      break;
+    case 3:
+      isValid = !!questionnaireData.orcamento;
+      break;
+    case 4:
+      isValid = questionnaireData.periodo.length > 0;
+      break;
+    case 5:
+      isValid = !!questionnaireData.dias;
+      break;
+    default:
+      isValid = false;
+  }
+  
+  btnNext.disabled = !isValid;
+}
+
+function selectOption(field, value, element) {
+  // Para escolhas únicas
+  questionnaireData[field] = value;
+  
+  // Destacar apenas o selecionado no respectivo passo
+  const stepContainer = element.closest('.modal-step');
+  stepContainer.querySelectorAll('.option-card').forEach(card => {
+    card.classList.remove('selected');
+  });
+  element.classList.add('selected');
+  
+  validateStep(currentStep);
+  
+  // Avança de passo automaticamente após 200ms para escolhas de clique único, para melhor fluidez
+  if (currentStep !== 5) {
+    setTimeout(() => {
+      if (currentStep === 1 || currentStep === 3) {
+        nextStep();
+      }
+    }, 200);
+  }
+}
+
+function toggleMultiOption(field, value, element) {
+  // Para escolhas múltiplas
+  const index = questionnaireData[field].indexOf(value);
+  if (index > -1) {
+    questionnaireData[field].splice(index, 1);
+    element.classList.remove('selected');
+  } else {
+    questionnaireData[field].push(value);
+    element.classList.add('selected');
+  }
+  
+  validateStep(currentStep);
+}
+
+function nextStep() {
+  if (currentStep < 5) {
+    showStep(currentStep + 1);
+  } else {
+    generateSmartItinerary();
+  }
+}
+
+function prevStep() {
+  if (currentStep > 1) {
+    const resultsActive = document.getElementById('stepResults').classList.contains('active');
+    const loadingActive = document.getElementById('stepLoading').classList.contains('active');
+    
+    if (resultsActive || loadingActive) {
+      document.getElementById('stepResults').classList.remove('active');
+      document.getElementById('stepLoading').classList.remove('active');
+      document.getElementById('modalFooter').style.display = 'flex';
+      document.getElementById('modalProgressContainer').style.display = 'block';
+      showStep(5);
+    } else {
+      showStep(currentStep - 1);
+    }
+  }
+}
+
+// ─── ALGORITMO INTELIGENTE DE RECOMENDAÇÃO ───
+function generateSmartItinerary() {
+  // Esconder Rodapé e barra de progresso, e mostrar carregamento
+  document.getElementById('modalFooter').style.display = 'none';
+  document.getElementById('modalProgressContainer').style.display = 'none';
+  
+  document.querySelectorAll('.modal-step').forEach(el => el.classList.remove('active'));
+  const stepLoading = document.getElementById('stepLoading');
+  stepLoading.classList.add('active');
+  
+  const loadingTexts = [
+    "Analisando seu perfil de acompanhante...",
+    "Pontuando as melhores atrações de São Paulo...",
+    "Filtrando locais que cabem no seu orçamento...",
+    "Otimizando trânsito e agrupando lugares vizinhos..."
+  ];
+  
+  let textIndex = 0;
+  const intervalId = setInterval(() => {
+    textIndex++;
+    if (textIndex < loadingTexts.length) {
+      document.getElementById('loadingText').textContent = loadingTexts[textIndex];
+    }
+  }, 700);
+  
+  setTimeout(async () => {
+    clearInterval(intervalId);
+    
+    // Executar algoritmo de recomendação
+    const recommendedPlaces = matchAndScorePlaces();
+    
+    // Organizar o roteiro em dias e turnos
+    const itinerary = organizeItineraryStructure(recommendedPlaces);
+    
+    // Renderizar resultados na tela
+    renderItineraryResults(itinerary, recommendedPlaces);
+    
+    // Exibir tela de resultados
+    stepLoading.classList.remove('active');
+    document.getElementById('stepResults').classList.add('active');
+    
+    // Enviar dados para o Supabase via API Vercel
+    await saveItineraryToSupabase(itinerary);
+    
+  }, 2800);
+}
+
+function matchAndScorePlaces() {
+  const vibeTagsMap = {
+    natureza: ['Natureza', 'Ao ar livre', 'Trilha', 'Paz', 'Parque da Luz'],
+    cultura: ['Arte', 'Museus', 'Histórico', 'Arquitetura', 'Interativo', 'Centro', 'Cultura'],
+    gastronomia: ['Comida', 'Restaurante', 'Romântico', 'Popular'],
+    noite: ['Samba', 'Bar', 'Vila Mada', 'Boêmio', 'Bares', 'Vista', 'Romântico']
+  };
+
+  const scored = places.map(p => {
+    let score = 0;
+    
+    // 1. Compatibilidade de acompanhante
+    if (p.quem.includes(questionnaireData.acompanhante)) {
+      score += 35;
+    }
+    
+    // 2. Compatibilidade Orçamentária
+    if (questionnaireData.orcamento === 'gratis') {
+      if (p.preco === 'gratis') score += 30;
+      else if (p.preco === 'barato') score += 20;
+      else if (p.preco === 'medio') score -= 15;
+      else if (p.preco === 'premium') score -= 40;
+    } else if (questionnaireData.orcamento === 'medio') {
+      if (p.preco === 'medio') score += 30;
+      else if (p.preco === 'barato' || p.preco === 'gratis') score += 25;
+      else if (p.preco === 'premium') score -= 15;
+    } else if (questionnaireData.orcamento === 'premium') {
+      if (p.preco === 'premium') score += 30;
+      else if (p.preco === 'medio') score += 20;
+      else score += 10;
+    }
+    
+    // 3. Compatibilidade de Período
+    const matchesPeriod = questionnaireData.periodo.some(per => p.hora.includes(per));
+    if (matchesPeriod) {
+      score += 20;
+    }
+    
+    // 4. Compatibilidade de Vibe e Tags
+    let matchingVibesCount = 0;
+    questionnaireData.vibe.forEach(v => {
+      const tags = vibeTagsMap[v] || [];
+      const hasMatch = tags.some(t => p.tags.includes(t) || p.cat.toLowerCase().includes(t.toLowerCase()) || p.title.toLowerCase().includes(t.toLowerCase()));
+      if (hasMatch) {
+        matchingVibesCount++;
+      }
+    });
+    score += matchingVibesCount * 15;
+    
+    return { place: p, score };
+  });
+  
+  return scored
+    .filter(item => item.score > 0)
+    .sort((a, b) => b.score - a.score)
+    .map(item => ({ ...item.place, matchScore: Math.min(100, Math.max(10, Math.round(item.score * 1.15))) }));
+}
+
+function organizeItineraryStructure(scoredPlaces) {
+  const numDias = Number(questionnaireData.dias) || 1;
+  const periods = questionnaireData.periodo;
+  
+  const itinerary = {};
+  for (let d = 1; d <= numDias; d++) {
+    itinerary[`Dia ${d}`] = {
+      manha_tarde: null,
+      noite: null
+    };
+  }
+  
+  const pool = [...scoredPlaces];
+  
+  for (let d = 1; d <= numDias; d++) {
+    // 1. Preencher Dia
+    if (periods.includes('dia')) {
+      let idx = pool.findIndex(p => p.hora.includes('dia'));
+      if (idx > -1) {
+        itinerary[`Dia ${d}`].manha_tarde = pool.splice(idx, 1)[0];
+      }
+    }
+    
+    // 2. Preencher Noite
+    if (periods.includes('noite')) {
+      let idx = -1;
+      const diaPlace = itinerary[`Dia ${d}`].manha_tarde;
+      
+      // Otimização de Logística
+      if (diaPlace) {
+        const regioes = ['Vila Mada', 'Paulista', 'Centro', 'Ibirapuera', 'Pinheiros', 'Liberdade'];
+        const diaRegion = regioes.find(r => diaPlace.tags.includes(r) || diaPlace.title.includes(r));
+        if (diaRegion) {
+          idx = pool.findIndex(p => p.hora.includes('noite') && (p.tags.includes(diaRegion) || p.title.includes(diaRegion)));
+        }
+      }
+      
+      if (idx === -1) {
+        idx = pool.findIndex(p => p.hora.includes('noite'));
+      }
+      
+      if (idx > -1) {
+        itinerary[`Dia ${d}`].noite = pool.splice(idx, 1)[0];
+      }
+    }
+  }
+  
+  // Fallback se algum dia ficou totalmente vazio
+  for (let d = 1; d <= numDias; d++) {
+    if (!itinerary[`Dia ${d}`].manha_tarde && !itinerary[`Dia ${d}`].noite && pool.length > 0) {
+      const fallbackPlace = pool.splice(0, 1)[0];
+      if (fallbackPlace.hora.includes('dia') && periods.includes('dia')) {
+        itinerary[`Dia ${d}`].manha_tarde = fallbackPlace;
+      } else {
+        itinerary[`Dia ${d}`].noite = fallbackPlace;
+      }
+    }
+  }
+  
+  return itinerary;
+}
+
+function renderItineraryResults(itinerary, scoredPlaces) {
+  let sumScore = 0;
+  let count = 0;
+  
+  Object.values(itinerary).forEach(day => {
+    if (day.manha_tarde) { sumScore += day.manha_tarde.matchScore; count++; }
+    if (day.noite) { sumScore += day.noite.matchScore; count++; }
+  });
+  
+  const averageScore = count > 0 ? Math.round(sumScore / count) : 95;
+  document.getElementById('matchScoreVal').textContent = `${averageScore}%`;
+  
+  const traduzirAcompanhante = {
+    sozinho: 'Solo',
+    casal: 'Em Casal',
+    amigos: 'Com Amigos',
+    familia: 'Em Família'
+  };
+  const traduzirOrcamento = {
+    gratis: 'Econômico',
+    medio: 'Moderado',
+    premium: 'Premium'
+  };
+  
+  const diasNum = questionnaireData.dias;
+  const acompStr = traduzirAcompanhante[questionnaireData.acompanhante] || 'Explorador';
+  const orcStr = traduzirOrcamento[questionnaireData.orcamento] || 'Moderado';
+  document.getElementById('resultsMeta').textContent = `Perfil: ${acompStr} · ${diasNum} ${diasNum === '1' ? 'Dia' : 'Dias'} · Orçamento ${orcStr}`;
+  
+  const container = document.getElementById('itineraryContainer');
+  container.innerHTML = '';
+  
+  Object.entries(itinerary).forEach(([dayName, slots]) => {
+    if (!slots.manha_tarde && !slots.noite) return;
+    
+    let html = `
+      <div class="itinerary-day">
+        <h4 class="day-title">${dayName}</h4>
+        <div class="day-slots">
+    `;
+    
+    if (slots.manha_tarde) {
+      const p = slots.manha_tarde;
+      html += `
+        <div class="itinerary-slot">
+          <div class="slot-time-badge">☀️ DIA</div>
+          <div class="slot-info">
+            <div class="slot-cat">${p.cat}</div>
+            <div class="slot-name">${p.icon} ${p.title}</div>
+            <div class="slot-desc">${p.desc}</div>
+          </div>
+        </div>
+      `;
+    }
+    
+    if (slots.noite) {
+      const p = slots.noite;
+      html += `
+        <div class="itinerary-slot">
+          <div class="slot-time-badge">🌙 NOITE</div>
+          <div class="slot-info">
+            <div class="slot-cat">${p.cat}</div>
+            <div class="slot-name">${p.icon} ${p.title}</div>
+            <div class="slot-desc">${p.desc}</div>
+          </div>
+        </div>
+      `;
+    }
+    
+    // Otimização de Logística Geográfica
+    if (slots.manha_tarde && slots.noite) {
+      const regioes = ['Vila Mada', 'Paulista', 'Centro', 'Ibirapuera', 'Pinheiros', 'Liberdade'];
+      const diaReg = regioes.find(r => slots.manha_tarde.tags.includes(r) || slots.manha_tarde.title.includes(r));
+      const noiteReg = regioes.find(r => slots.noite.tags.includes(r) || slots.noite.title.includes(r));
+      
+      if (diaReg && noiteReg && diaReg === noiteReg) {
+        html += `
+          <div class="logistics-alert">
+            ⚡ <strong>Logística Otimizada:</strong> Ambos os passeios deste dia ficam na região da <strong>${diaReg}</strong>! Você pode se deslocar caminhando ou em um Uber super rápido de poucos minutos, economizando tempo de trânsito!
+          </div>
+        `;
+      }
+    }
+    
+    html += `
+        </div>
+      </div>
+    `;
+    
+    container.innerHTML += html;
+  });
+}
+
+async function saveItineraryToSupabase(itinerary) {
+  const statusMsg = document.getElementById('apiStatusMessage');
+  statusMsg.style.display = 'block';
+  statusMsg.className = 'api-status';
+  statusMsg.textContent = "Salvando roteiro no banco de dados...";
+  
+  try {
+    const payload = {
+      acompanhante: questionnaireData.acompanhante,
+      vibe: questionnaireData.vibe,
+      orcamento: questionnaireData.orcamento,
+      periodos: questionnaireData.periodo,
+      dias: Number(questionnaireData.dias) || 1,
+      roteiro_gerado: itinerary
+    };
+    
+    const response = await fetch('/api/form', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(payload)
+    });
+    
+    const result = await response.json();
+    
+    if (response.ok && result.success) {
+      statusMsg.className = 'api-status success';
+      statusMsg.textContent = "✓ Roteiro salvo no Supabase com sucesso!";
+    } else {
+      console.warn("Retorno da API:", result);
+      statusMsg.className = 'api-status error';
+      statusMsg.textContent = `Erro ao salvar roteiro: ${result.error || 'Erro desconhecido'}`;
+    }
+  } catch (error) {
+    console.error("Erro ao salvar no banco:", error);
+    statusMsg.className = 'api-status error';
+    statusMsg.textContent = "Erro de conexão ao salvar roteiro no banco de dados.";
+  }
+}
 
 // ─── INIT ───
 render();
