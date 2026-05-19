@@ -1,0 +1,1606 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SP Descubra · São Paulo para todos os momentos</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,300;0,400;0,600;0,700;0,800;0,900;1,700&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --red:#C8001E;
+  --red-dark:#8B0015;
+  --red-light:#E8001F;
+  --cream:#F5F2EC;
+  --white:#FFFFFF;
+  --black:#080808;
+  --gray:#7a7a7a;
+  --gray-light:#E4E0D8;
+  --font-display:'Barlow Condensed',sans-serif;
+  --font-body:'Outfit',sans-serif;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--font-body);background:var(--white);color:var(--black);overflow-x:hidden}
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-track{background:var(--black)}
+::-webkit-scrollbar-thumb{background:var(--red)}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:1.4rem 3.5rem;transition:background 0.4s,padding 0.4s}
+nav.scrolled{background:rgba(8,8,8,0.96);backdrop-filter:blur(12px);padding:1rem 3.5rem;border-bottom:1px solid rgba(200,0,30,0.2)}
+.logo{font-family:var(--font-display);font-size:1.9rem;font-weight:800;color:var(--white);letter-spacing:0.04em;text-transform:uppercase;display:flex;align-items:center;gap:0.3rem}
+.logo-dot{width:8px;height:8px;border-radius:50%;background:var(--red);margin:0 2px;margin-bottom:2px;display:inline-block}
+.nav-links{display:flex;gap:2rem;align-items:center}
+.nav-links a{color:rgba(255,255,255,0.75);text-decoration:none;font-family:var(--font-display);font-size:1rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;transition:color 0.2s;cursor:pointer}
+.nav-links a:hover{color:var(--white)}
+.nav-cta{background:var(--red);color:var(--white);padding:0.55rem 1.6rem;font-family:var(--font-display);font-size:0.95rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;border:none;cursor:pointer;transition:background 0.2s;clip-path:polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,10px 100%,0 calc(100% - 10px))}
+.nav-cta:hover{background:var(--red-light)}
+
+/* HERO */
+.hero{height:100vh;min-height:700px;background:var(--black);position:relative;display:flex;align-items:flex-end;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 80% 80% at 70% 60%,#1f0007 0%,#080808 65%)}
+.hero-grid{position:absolute;inset:0;background-image:repeating-linear-gradient(0deg,transparent,transparent 59px,rgba(200,0,30,0.07) 60px),repeating-linear-gradient(90deg,transparent,transparent 59px,rgba(200,0,30,0.07) 60px)}
+.hero-silhouette{position:absolute;bottom:0;left:0;right:0;height:60%;background:var(--black);clip-path:polygon(0 100%,0 80%,1% 75%,2% 75%,2% 50%,2.5% 50%,2.5% 75%,3.5% 75%,3.5% 60%,4% 60%,4% 40%,4.5% 40%,4.5% 60%,5.5% 60%,5.5% 80%,7% 80%,7% 55%,7.5% 55%,7.5% 42%,8% 42%,8% 55%,9.5% 55%,9.5% 70%,11% 70%,11% 52%,12% 52%,12% 35%,12.5% 35%,12.5% 52%,14% 52%,14% 62%,16% 62%,16% 45%,17% 45%,17% 30%,17.5% 30%,17.5% 45%,19% 45%,19% 58%,21% 58%,21% 48%,22% 48%,22% 38%,23% 38%,23% 48%,25% 48%,25% 70%,27% 70%,27% 50%,28% 50%,28% 32%,29% 32%,29% 50%,31% 50%,31% 60%,33% 60%,33% 45%,34% 45%,34% 55%,36% 55%,36% 38%,37% 38%,37% 28%,37.5% 28%,37.5% 38%,39% 38%,39% 55%,41% 55%,41% 42%,42% 42%,42% 52%,44% 52%,44% 35%,45% 35%,45% 20%,45.5% 20%,45.5% 35%,47% 35%,47% 52%,49% 52%,49% 40%,50% 40%,50% 30%,51% 30%,51% 40%,53% 40%,53% 58%,55% 58%,55% 45%,56% 45%,56% 55%,58% 55%,58% 38%,59% 38%,59% 25%,60% 25%,60% 38%,62% 38%,62% 55%,64% 55%,64% 42%,65% 42%,65% 32%,66% 32%,66% 42%,68% 42%,68% 60%,70% 60%,70% 46%,71% 46%,71% 35%,72% 35%,72% 46%,74% 46%,74% 58%,76% 58%,76% 45%,77% 45%,77% 38%,78% 38%,78% 45%,80% 45%,80% 62%,82% 62%,82% 48%,83% 48%,83% 55%,85% 55%,85% 40%,86% 40%,86% 30%,87% 30%,87% 40%,89% 40%,89% 55%,91% 55%,91% 45%,92% 45%,92% 38%,93% 38%,93% 45%,95% 45%,95% 60%,97% 60%,97% 50%,98% 50%,98% 58%,100% 58%,100% 100%)}
+.hero-glow{position:absolute;bottom:30%;left:50%;transform:translateX(-50%);width:80%;height:200px;background:radial-gradient(ellipse,rgba(200,0,30,0.12) 0%,transparent 70%);pointer-events:none}
+.hero-content{position:relative;z-index:2;padding:0 3.5rem 5rem;width:100%}
+.hero-eyebrow{font-family:var(--font-display);font-size:0.9rem;font-weight:600;letter-spacing:0.35em;text-transform:uppercase;color:var(--red);margin-bottom:1.5rem;display:flex;align-items:center;gap:1rem}
+.hero-eyebrow::before{content:'';width:32px;height:2px;background:var(--red)}
+.hero-title{font-family:var(--font-display);font-size:clamp(5.5rem,13vw,12.5rem);font-weight:900;line-height:0.88;text-transform:uppercase;margin-bottom:1.5rem}
+.hero-title .line1{color:var(--white)}
+.hero-title .line2{color:transparent;-webkit-text-stroke:1.5px rgba(255,255,255,0.4)}
+.hero-title .line3{color:var(--red)}
+.hero-subtitle{font-size:1.05rem;font-weight:300;color:rgba(255,255,255,0.55);max-width:420px;line-height:1.75;margin-bottom:2.8rem}
+.hero-actions{display:flex;gap:1.5rem;align-items:center}
+.btn-primary{background:var(--red);color:var(--white);padding:1.1rem 2.8rem;font-family:var(--font-display);font-size:1.05rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;border:none;cursor:pointer;transition:background 0.2s,transform 0.15s;clip-path:polygon(0 0,calc(100% - 14px) 0,100% 14px,100% 100%,14px 100%,0 calc(100% - 14px))}
+.btn-primary:hover{background:var(--red-light);transform:translateY(-1px)}
+.btn-ghost{color:rgba(255,255,255,0.6);font-family:var(--font-display);font-size:1rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;cursor:pointer;border:none;background:none;display:flex;align-items:center;gap:0.6rem;transition:color 0.2s}
+.btn-ghost:hover{color:var(--white)}
+.hero-stats{position:absolute;right:3.5rem;bottom:5rem;z-index:2;display:flex;flex-direction:column;align-items:flex-end;gap:1.5rem}
+.stat{text-align:right}
+.stat-num{font-family:var(--font-display);font-size:3.5rem;font-weight:900;color:var(--red);line-height:1;letter-spacing:-0.02em}
+.stat-label{font-family:var(--font-display);font-size:0.75rem;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.35)}
+.stat-divider{width:1px;height:40px;background:rgba(200,0,30,0.3);align-self:flex-end}
+.scroll-cue{position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);z-index:2;display:flex;flex-direction:column;align-items:center;gap:0.6rem}
+.scroll-cue span{font-family:var(--font-display);font-size:0.7rem;font-weight:600;letter-spacing:0.3em;text-transform:uppercase;color:rgba(255,255,255,0.3)}
+.scroll-line{width:1px;height:48px;background:linear-gradient(to bottom,rgba(200,0,30,0.9),transparent);animation:pulse-down 2s ease-in-out infinite}
+@keyframes pulse-down{0%{transform:scaleY(0);transform-origin:top;opacity:0}40%{opacity:1}100%{transform:scaleY(1);transform-origin:top;opacity:0}}
+
+/* MARQUEE */
+.marquee-band{background:var(--red);padding:1rem 0;overflow:hidden;white-space:nowrap;border-top:2px solid var(--red-dark)}
+.marquee-track{display:inline-flex;gap:3rem;align-items:center;animation:slide 24s linear infinite}
+.marquee-track:hover{animation-play-state:paused}
+@keyframes slide{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.m-word{font-family:var(--font-display);font-size:1.8rem;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;color:var(--white)}
+.m-word.hollow{-webkit-text-stroke:1px rgba(255,255,255,0.6);color:transparent}
+.m-sep{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,0.4);flex-shrink:0}
+
+/* FILTER SECTION */
+.filter-section{background:var(--cream);padding:5rem 3.5rem}
+.sec-header{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:3rem;gap:2rem}
+.sec-title{font-family:var(--font-display);font-size:clamp(2.8rem,5vw,4.5rem);font-weight:900;text-transform:uppercase;line-height:0.95;letter-spacing:0.01em}
+.sec-title .red{color:var(--red)}
+.sec-title .light{font-weight:300;color:var(--gray)}
+.see-all-btn{font-family:var(--font-display);font-size:0.85rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--gray);background:none;border:none;cursor:pointer;text-decoration:underline;text-underline-offset:5px;white-space:nowrap}
+.see-all-btn:hover{color:var(--red)}
+.filter-bar{display:flex;flex-wrap:wrap;gap:0.6rem 0.5rem;align-items:center;margin-bottom:3rem;padding-bottom:2rem;border-bottom:1px solid #d0ccc4}
+.filter-label{font-family:var(--font-display);font-size:0.75rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--gray);padding-right:0.25rem}
+.chip{padding:0.45rem 1.1rem;border:1px solid #ccc;background:var(--white);font-family:var(--font-display);font-size:0.9rem;font-weight:600;letter-spacing:0.05em;text-transform:uppercase;cursor:pointer;transition:all 0.2s;color:#555}
+.chip:hover{border-color:var(--red);color:var(--red)}
+.chip.on{background:var(--red);border-color:var(--red);color:var(--white)}
+.chip.special{border-color:var(--black);color:var(--black);background:transparent;display:flex;align-items:center;gap:0.4rem}
+.chip.special.on{background:var(--black);color:var(--white);border-color:var(--black)}
+.vsep{width:1px;height:28px;background:#ccc;margin:0 0.4rem}
+.cards-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--gray-light)}
+.card{background:var(--white);overflow:hidden;cursor:pointer;position:relative;transition:box-shadow 0.3s}
+.card:hover{box-shadow:0 0 0 2px var(--red)}
+.card:hover .card-thumb-inner{transform:scale(1.06)}
+.card-thumb{height:210px;overflow:hidden;position:relative}
+.card-thumb-inner{height:100%;width:100%;transition:transform 0.55s cubic-bezier(0.25,0.46,0.45,0.94);display:flex;align-items:center;justify-content:center;position:relative}
+.thumb-label-bg{font-family:var(--font-display);font-weight:900;font-size:5.5rem;letter-spacing:0.02em;text-transform:uppercase;color:rgba(255,255,255,0.06);user-select:none;position:absolute}
+.thumb-icon{width:52px;height:52px;border-radius:50%;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);display:flex;align-items:center;justify-content:center;font-size:1.5rem;position:relative;z-index:1}
+.card-badge{position:absolute;top:1rem;left:1rem;background:var(--red);color:var(--white);font-family:var(--font-display);font-size:0.7rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;padding:0.3rem 0.75rem}
+.card-price-tag{position:absolute;top:1rem;right:1rem;background:rgba(0,0,0,0.65);color:rgba(255,255,255,0.9);font-family:var(--font-display);font-size:0.75rem;font-weight:600;letter-spacing:0.1em;padding:0.3rem 0.6rem;backdrop-filter:blur(4px)}
+.card-body{padding:1.4rem 1.5rem}
+.card-cat{font-family:var(--font-display);font-size:0.7rem;font-weight:700;letter-spacing:0.25em;text-transform:uppercase;color:var(--red);margin-bottom:0.4rem}
+.card-name{font-family:var(--font-display);font-size:1.4rem;font-weight:800;text-transform:uppercase;letter-spacing:0.02em;line-height:1.1;margin-bottom:0.6rem}
+.card-desc{font-size:0.85rem;font-weight:300;color:var(--gray);line-height:1.6;margin-bottom:1rem}
+.card-tags{display:flex;gap:0.4rem;flex-wrap:wrap}
+.tag{font-family:var(--font-display);font-size:0.7rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;padding:0.2rem 0.6rem;background:var(--cream);color:#888}
+.card.featured{grid-column:span 2}
+.card.featured .card-thumb{height:300px}
+.card.featured .card-name{font-size:2rem}
+.card.featured .thumb-label-bg{font-size:8rem}
+
+/* MARQUEE 2 */
+.marquee-band-2{background:var(--black);padding:1rem 0;overflow:hidden;white-space:nowrap}
+
+/* ROTEIROS */
+.roteiros-section{padding:5rem 3.5rem;background:var(--black);color:var(--white)}
+.roteiros-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start;margin-top:4rem}
+.rot-list{display:flex;flex-direction:column}
+.rot-item{border-top:1px solid rgba(255,255,255,0.08);padding:1.8rem 0;cursor:pointer;display:flex;align-items:center;gap:1.5rem;transition:all 0.3s}
+.rot-item:last-child{border-bottom:1px solid rgba(255,255,255,0.08)}
+.rot-item.active .rot-name{color:var(--red)}
+.rot-item.active .rot-num{color:var(--red)}
+.rot-item:hover .rot-name{color:rgba(255,255,255,0.9)}
+.rot-num{font-family:var(--font-display);font-size:0.85rem;font-weight:700;letter-spacing:0.15em;color:rgba(255,255,255,0.2);width:36px;flex-shrink:0;transition:color 0.3s}
+.rot-info{flex:1}
+.rot-name{font-family:var(--font-display);font-size:1.5rem;font-weight:800;text-transform:uppercase;letter-spacing:0.03em;color:rgba(255,255,255,0.75);transition:color 0.3s;margin-bottom:0.25rem}
+.rot-meta{font-size:0.8rem;font-weight:300;color:rgba(255,255,255,0.3);letter-spacing:0.05em}
+.rot-arrow{font-size:1.2rem;color:var(--red);opacity:0;transition:opacity 0.3s,transform 0.3s}
+.rot-item.active .rot-arrow,.rot-item:hover .rot-arrow{opacity:1;transform:translateX(4px)}
+.rot-visual{position:sticky;top:7rem}
+.rot-card{position:relative;overflow:hidden;background:linear-gradient(145deg,#1a0005,#2d0010);aspect-ratio:3/4;max-height:520px}
+.rot-card-bg-text{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:9rem;font-weight:900;letter-spacing:0.05em;text-transform:uppercase;color:rgba(200,0,30,0.08);line-height:1;text-align:center;padding:1rem}
+.rot-card-tags{position:absolute;top:1.5rem;right:1.5rem;display:flex;flex-direction:column;gap:0.5rem}
+.rot-card-tag{background:rgba(200,0,30,0.18);border:1px solid rgba(200,0,30,0.35);color:rgba(255,255,255,0.75);font-family:var(--font-display);font-size:0.65rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;padding:0.35rem 0.8rem}
+.rot-card-label{position:absolute;bottom:0;left:0;right:0;padding:2.5rem 2rem 2rem;background:linear-gradient(to top,rgba(0,0,0,0.95) 0%,transparent 100%)}
+.rot-card-cat{font-family:var(--font-display);font-size:0.7rem;font-weight:700;letter-spacing:0.25em;text-transform:uppercase;color:var(--red);margin-bottom:0.5rem}
+.rot-card-title{font-family:var(--font-display);font-size:2.2rem;font-weight:900;text-transform:uppercase;letter-spacing:0.02em;color:var(--white);line-height:1}
+
+/* MAP CTA */
+.map-section{display:grid;grid-template-columns:1fr 1fr;min-height:500px}
+.map-left{background:var(--cream);padding:5rem 3.5rem;display:flex;flex-direction:column;justify-content:center}
+.map-big-title{font-family:var(--font-display);font-size:clamp(3rem,5vw,5.5rem);font-weight:900;text-transform:uppercase;letter-spacing:0.01em;line-height:0.9;margin-bottom:1.5rem}
+.map-big-title .giant{font-size:clamp(4.5rem,8vw,8rem);color:var(--red);display:block}
+.map-desc{font-size:0.95rem;font-weight:300;color:var(--gray);line-height:1.8;max-width:380px;margin-bottom:2.5rem}
+.map-right{background:var(--black);position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center}
+.map-grid{position:absolute;inset:0;background-image:repeating-linear-gradient(0deg,transparent,transparent 29px,rgba(200,0,30,0.06) 30px),repeating-linear-gradient(90deg,transparent,transparent 29px,rgba(200,0,30,0.06) 30px)}
+.map-glow{position:absolute;width:60%;height:60%;background:radial-gradient(ellipse,rgba(200,0,30,0.12) 0%,transparent 70%)}
+.map-word{position:absolute;font-family:var(--font-display);font-size:10rem;font-weight:900;text-transform:uppercase;letter-spacing:0.05em;color:rgba(200,0,30,0.05);user-select:none}
+.map-pin{position:absolute;display:flex;flex-direction:column;align-items:center;gap:0;cursor:pointer}
+.pin-dot{width:10px;height:10px;border-radius:50%;background:var(--red);box-shadow:0 0 0 4px rgba(200,0,30,0.25),0 0 0 8px rgba(200,0,30,0.08);transition:transform 0.2s}
+.map-pin:hover .pin-dot{transform:scale(1.4)}
+.pin-label{font-family:var(--font-display);font-size:0.6rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:rgba(255,255,255,0.55);margin-top:6px;white-space:nowrap}
+.pin-line{width:1px;height:16px;background:rgba(200,0,30,0.4)}
+
+/* DICAS */
+.dicas-section{background:var(--white);padding:5rem 3.5rem}
+.dicas-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--gray-light);margin-top:3rem}
+.dica-card{background:var(--white);padding:2rem 1.8rem;border-top:3px solid transparent;transition:border-color 0.3s}
+.dica-card:hover{border-top-color:var(--red)}
+.dica-icon{font-size:1.8rem;margin-bottom:1rem}
+.dica-title{font-family:var(--font-display);font-size:1.25rem;font-weight:800;text-transform:uppercase;letter-spacing:0.03em;margin-bottom:0.7rem}
+.dica-text{font-size:0.85rem;font-weight:300;color:var(--gray);line-height:1.7}
+
+/* ══════════════════════════════════════════
+   GUIA COMPLETO — NOVAS SEÇÕES
+   ══════════════════════════════════════════ */
+
+/* GUIA REGIOES */
+.guia-section{background:var(--white);padding:5rem 3.5rem}
+.guia-section.dark{background:var(--black);color:var(--white)}
+.guia-section.cream{background:var(--cream)}
+
+.region-tabs{display:flex;gap:0;flex-wrap:wrap;margin-bottom:3rem;border-bottom:2px solid var(--gray-light)}
+.region-tab{font-family:var(--font-display);font-size:0.85rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;padding:0.9rem 1.8rem;cursor:pointer;border:none;background:none;color:var(--gray);border-bottom:3px solid transparent;margin-bottom:-2px;transition:all 0.2s}
+.region-tab:hover{color:var(--black)}
+.region-tab.active{color:var(--red);border-bottom-color:var(--red)}
+
+.region-panel{display:none}
+.region-panel.active{display:block}
+
+.region-intro{display:grid;grid-template-columns:1fr 2fr;gap:4rem;margin-bottom:4rem;align-items:start}
+.region-zone-badge{font-family:var(--font-display);font-size:0.7rem;font-weight:700;letter-spacing:0.25em;text-transform:uppercase;color:var(--red);margin-bottom:0.5rem}
+.region-name{font-family:var(--font-display);font-size:clamp(2.5rem,5vw,4rem);font-weight:900;text-transform:uppercase;line-height:0.9;margin-bottom:1.5rem}
+.region-desc{font-size:0.95rem;font-weight:300;color:var(--gray);line-height:1.9}
+.region-neighborhoods{display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:1.5rem}
+.nbhd-tag{font-family:var(--font-display);font-size:0.7rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;padding:0.3rem 0.8rem;background:var(--cream);color:#777;border:1px solid var(--gray-light)}
+
+/* CATEGORY BLOCKS */
+.cat-block{margin-bottom:4rem}
+.cat-block-header{display:flex;align-items:center;gap:1rem;margin-bottom:2rem;padding-bottom:1rem;border-bottom:1px solid var(--gray-light)}
+.cat-block-icon{font-size:1.4rem}
+.cat-block-title{font-family:var(--font-display);font-size:1.5rem;font-weight:800;text-transform:uppercase;letter-spacing:0.05em}
+.cat-block-count{font-family:var(--font-display);font-size:0.75rem;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:var(--red);margin-left:auto}
+
+.place-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1px;background:var(--gray-light)}
+.place-card{background:var(--white);padding:1.8rem}
+.place-card:hover{background:#fffaf8}
+.place-card-name{font-family:var(--font-display);font-size:1.3rem;font-weight:800;text-transform:uppercase;letter-spacing:0.03em;margin-bottom:0.3rem}
+.place-card-type{font-family:var(--font-display);font-size:0.65rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--red);margin-bottom:0.8rem}
+.place-card-desc{font-size:0.85rem;font-weight:300;color:var(--gray);line-height:1.7;margin-bottom:1rem}
+.place-card-meta{display:flex;flex-wrap:wrap;gap:0.5rem}
+.meta-pill{display:flex;align-items:center;gap:0.3rem;font-family:var(--font-display);font-size:0.65rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:0.25rem 0.7rem;background:var(--cream);color:#666}
+.meta-pill.green{background:#e8f5e9;color:#2e7d32}
+.meta-pill.red{background:#fdecea;color:#c62828}
+.meta-pill.yellow{background:#fff8e1;color:#f57f17}
+
+/* ACCORDIONS (bairros dentro de região) */
+.bairro-accordion{margin-bottom:1rem}
+.bairro-header{display:flex;align-items:center;justify-content:space-between;padding:1.2rem 1.5rem;background:var(--cream);cursor:pointer;border-left:3px solid transparent;transition:all 0.2s}
+.bairro-header:hover,.bairro-header.open{border-left-color:var(--red);background:#ede9e1}
+.bairro-header-left{display:flex;flex-direction:column;gap:0.2rem}
+.bairro-header-name{font-family:var(--font-display);font-size:1.15rem;font-weight:800;text-transform:uppercase;letter-spacing:0.05em}
+.bairro-header-sub{font-size:0.78rem;font-weight:300;color:var(--gray)}
+.bairro-arrow{font-size:1rem;color:var(--red);transition:transform 0.3s}
+.bairro-header.open .bairro-arrow{transform:rotate(90deg)}
+.bairro-body{display:none;padding:2rem 1.5rem;background:var(--white);border-left:3px solid var(--red)}
+.bairro-body.open{display:block}
+
+/* EVENTOS */
+.eventos-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1px;background:var(--gray-light);margin-top:2rem}
+.evento-card{background:var(--white);padding:1.8rem}
+.evento-card:hover{background:#fffaf8}
+.evento-epoca{font-family:var(--font-display);font-size:0.65rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--red);margin-bottom:0.4rem}
+.evento-name{font-family:var(--font-display);font-size:1.2rem;font-weight:800;text-transform:uppercase;letter-spacing:0.03em;margin-bottom:0.5rem}
+.evento-desc{font-size:0.83rem;font-weight:300;color:var(--gray);line-height:1.7}
+
+/* ESTAÇÕES */
+.estacoes-section{background:var(--black);color:var(--white);padding:5rem 3.5rem}
+.estacoes-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(200,0,30,0.15);margin-top:3rem}
+.estacao-card{background:var(--black);padding:2.5rem 2rem;border-top:3px solid transparent;transition:border-color 0.3s}
+.estacao-card:hover{border-top-color:var(--red)}
+.estacao-icon{font-size:2rem;margin-bottom:1rem}
+.estacao-name{font-family:var(--font-display);font-size:1.5rem;font-weight:800;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:0.3rem}
+.estacao-periodo{font-family:var(--font-display);font-size:0.7rem;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--red);margin-bottom:1rem}
+.estacao-desc{font-size:0.83rem;font-weight:300;color:rgba(255,255,255,0.5);line-height:1.7;margin-bottom:1.5rem}
+.estacao-roles{list-style:none;display:flex;flex-direction:column;gap:0.4rem}
+.estacao-roles li{font-size:0.8rem;font-weight:300;color:rgba(255,255,255,0.6);padding-left:1rem;position:relative}
+.estacao-roles li::before{content:'→';position:absolute;left:0;color:var(--red);font-size:0.7rem}
+.estacao-dicas{margin-top:1.2rem;padding-top:1.2rem;border-top:1px solid rgba(255,255,255,0.08)}
+.dicas-label{font-family:var(--font-display);font-size:0.65rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:0.6rem}
+
+/* DICAS GERAIS */
+.dicas-gerais-section{background:var(--cream);padding:5rem 3.5rem}
+.dicas-gerais-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;margin-top:3rem}
+.dica-bloco{background:var(--white);padding:2.5rem 2rem;border-top:3px solid var(--gray-light);transition:border-color 0.3s}
+.dica-bloco:hover{border-top-color:var(--red)}
+.dica-bloco-icon{font-size:2rem;margin-bottom:1rem}
+.dica-bloco-title{font-family:var(--font-display);font-size:1.3rem;font-weight:800;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:1.2rem}
+.dica-bloco ul{list-style:none;display:flex;flex-direction:column;gap:0.7rem}
+.dica-bloco li{font-size:0.85rem;font-weight:300;color:var(--gray);line-height:1.6;padding-left:1.2rem;position:relative}
+.dica-bloco li::before{content:'·';position:absolute;left:0;color:var(--red);font-weight:900}
+
+/* VOCABULARIO */
+.vocab-section{background:var(--black);color:var(--white);padding:5rem 3.5rem}
+.vocab-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(200,0,30,0.15);margin-top:3rem}
+.vocab-card{background:var(--black);padding:1.8rem}
+.vocab-card:hover{background:#0f0003}
+.vocab-word{font-family:var(--font-display);font-size:1.3rem;font-weight:800;text-transform:uppercase;letter-spacing:0.05em;color:var(--red);margin-bottom:0.5rem}
+.vocab-def{font-size:0.85rem;font-weight:300;color:rgba(255,255,255,0.55);line-height:1.7}
+
+/* FOOTER */
+footer{background:var(--black);color:var(--white);padding:5rem 3.5rem 2.5rem;border-top:1px solid rgba(200,0,30,0.25)}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem;margin-bottom:4rem}
+.brand-logo{font-family:var(--font-display);font-size:2.5rem;font-weight:900;text-transform:uppercase;letter-spacing:0.04em;color:var(--white);margin-bottom:1rem;display:flex;align-items:center;gap:0.4rem}
+.brand-logo .dot{width:8px;height:8px;border-radius:50%;background:var(--red);display:inline-block;margin:0 2px 3px}
+.brand-desc{font-size:0.9rem;font-weight:300;color:rgba(255,255,255,0.4);line-height:1.7;max-width:280px}
+.footer-col h4{font-family:var(--font-display);font-size:0.75rem;font-weight:700;letter-spacing:0.25em;text-transform:uppercase;color:var(--red);margin-bottom:1.5rem}
+.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:0.7rem}
+.footer-col li{font-size:0.9rem;font-weight:300;color:rgba(255,255,255,0.45);cursor:pointer;transition:color 0.2s}
+.footer-col li:hover{color:var(--white)}
+.footer-bottom{border-top:1px solid rgba(255,255,255,0.08);padding-top:2rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
+.footer-bottom p{font-size:0.8rem;font-weight:300;color:rgba(255,255,255,0.25)}
+.footer-bottom .red-text{color:var(--red)}
+.no-results{grid-column:span 3;padding:5rem;text-align:center}
+.no-results-title{font-family:var(--font-display);font-size:3.5rem;font-weight:900;text-transform:uppercase;color:var(--gray-light);margin-bottom:0.5rem}
+.no-results-sub{font-size:0.9rem;color:var(--gray)}
+
+/* BUDGET TABLE */
+.budget-table{width:100%;border-collapse:collapse;margin-top:1.5rem}
+.budget-table th{font-family:var(--font-display);font-size:0.7rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--red);padding:0.8rem 1rem;text-align:left;border-bottom:1px solid var(--gray-light)}
+.budget-table td{font-size:0.85rem;font-weight:300;color:var(--gray);padding:0.8rem 1rem;border-bottom:1px solid var(--gray-light);line-height:1.5}
+.budget-table tr:last-child td{border-bottom:none}
+.budget-badge{font-family:var(--font-display);font-size:0.7rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:0.2rem 0.6rem;background:var(--red);color:var(--white)}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  nav{padding:1.2rem 1.8rem}
+  .nav-links{display:none}
+  .hero-content{padding:0 1.8rem 4.5rem}
+  .hero-title{font-size:clamp(4rem,16vw,8rem)}
+  .hero-stats{right:1.8rem;bottom:4.5rem}
+  .filter-section,.roteiros-section,.dicas-section,.guia-section,.estacoes-section,.dicas-gerais-section,.vocab-section{padding:4rem 1.8rem}
+  .sec-header{flex-direction:column;align-items:flex-start}
+  .cards-grid{grid-template-columns:1fr}
+  .card.featured{grid-column:span 1}
+  .roteiros-grid{grid-template-columns:1fr;gap:3rem}
+  .rot-visual{position:static}
+  .rot-card{max-height:350px;aspect-ratio:16/9}
+  .map-section{grid-template-columns:1fr}
+  .map-right{min-height:320px}
+  .map-left{padding:4rem 1.8rem}
+  .dicas-grid{grid-template-columns:1fr 1fr}
+  .footer-grid{grid-template-columns:1fr 1fr}
+  footer{padding:4rem 1.8rem 2rem}
+  .region-intro{grid-template-columns:1fr}
+  .estacoes-grid{grid-template-columns:1fr 1fr}
+  .dicas-gerais-grid{grid-template-columns:1fr}
+  .vocab-grid{grid-template-columns:1fr 1fr}
+  .region-tabs{gap:0.5rem}
+}
+@media(max-width:600px){
+  .estacoes-grid{grid-template-columns:1fr}
+  .vocab-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="mainNav">
+  <div class="logo">SP<span class="logo-dot"></span>DESCUBRA</div>
+  <div class="nav-links">
+    <a onclick="document.getElementById('lugares').scrollIntoView({behavior:'smooth'})">Lugares</a>
+    <a onclick="document.getElementById('roteiros').scrollIntoView({behavior:'smooth'})">Roteiros</a>
+    <a onclick="document.getElementById('guia').scrollIntoView({behavior:'smooth'})">Guia</a>
+    <a onclick="document.getElementById('eventos').scrollIntoView({behavior:'smooth'})">Eventos</a>
+    <a onclick="document.getElementById('dicas-gerais').scrollIntoView({behavior:'smooth'})">Dicas</a>
+    <button class="nav-cta" onclick="document.getElementById('roteiro-cta').scrollIntoView({behavior:'smooth'})">Montar Roteiro</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-silhouette"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">São Paulo · Brasil · 12 milhões de histórias</div>
+    <h1 class="hero-title">
+      <div class="line1">SÃO</div>
+      <div class="line2">PAULO</div>
+      <div class="line3">VIVE</div>
+    </h1>
+    <p class="hero-subtitle">A maior metrópole da América Latina, em todos os seus ritmos. Do amanhecer no Ibirapuera à virada no Baixo Augusta.</p>
+    <div class="hero-actions">
+      <button class="btn-primary" onclick="document.getElementById('lugares').scrollIntoView({behavior:'smooth'})">Explorar Agora →</button>
+      <button class="btn-ghost" onclick="document.getElementById('guia').scrollIntoView({behavior:'smooth'})">▶ &nbsp;Ver Guia Completo</button>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div class="stat"><div class="stat-num">500+</div><div class="stat-label">Lugares</div></div>
+    <div class="stat-divider"></div>
+    <div class="stat"><div class="stat-num">96</div><div class="stat-label">Bairros</div></div>
+    <div class="stat-divider"></div>
+    <div class="stat"><div class="stat-num">24h</div><div class="stat-label">Cidade viva</div></div>
+  </div>
+  <div class="scroll-cue">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- MARQUEE 1 -->
+<div class="marquee-band">
+  <div class="marquee-track">
+    <span class="m-word">Gastronomia</span><span class="m-sep"></span>
+    <span class="m-word hollow">Cultura</span><span class="m-sep"></span>
+    <span class="m-word">Vida Noturna</span><span class="m-sep"></span>
+    <span class="m-word hollow">Parques</span><span class="m-sep"></span>
+    <span class="m-word">Arte Urbana</span><span class="m-sep"></span>
+    <span class="m-word hollow">Arquitetura</span><span class="m-sep"></span>
+    <span class="m-word">Compras</span><span class="m-sep"></span>
+    <span class="m-word hollow">Museus</span><span class="m-sep"></span>
+    <span class="m-word">Samba</span><span class="m-sep"></span>
+    <span class="m-word hollow">Bares</span><span class="m-sep"></span>
+    <span class="m-word">Gastronomia</span><span class="m-sep"></span>
+    <span class="m-word hollow">Cultura</span><span class="m-sep"></span>
+    <span class="m-word">Vida Noturna</span><span class="m-sep"></span>
+    <span class="m-word hollow">Parques</span><span class="m-sep"></span>
+    <span class="m-word">Arte Urbana</span><span class="m-sep"></span>
+    <span class="m-word hollow">Arquitetura</span><span class="m-sep"></span>
+    <span class="m-word">Compras</span><span class="m-sep"></span>
+    <span class="m-word hollow">Museus</span><span class="m-sep"></span>
+    <span class="m-word">Samba</span><span class="m-sep"></span>
+    <span class="m-word hollow">Bares</span><span class="m-sep"></span>
+  </div>
+</div>
+
+<!-- FILTER + CARDS -->
+<section class="filter-section" id="lugares">
+  <div class="sec-header">
+    <h2 class="sec-title">DESCUBRA<br><span class="red">SÃO PAULO</span><br><span class="light">Do seu jeito</span></h2>
+    <button class="see-all-btn">Ver todos os lugares →</button>
+  </div>
+  <div class="filter-bar">
+    <span class="filter-label">Com quem?</span>
+    <button class="chip on" data-g="quem" data-v="todos" onclick="pick(this,'quem')">Todos</button>
+    <button class="chip" data-g="quem" data-v="familia" onclick="pick(this,'quem')">Família</button>
+    <button class="chip" data-g="quem" data-v="casal" onclick="pick(this,'quem')">Casal</button>
+    <button class="chip" data-g="quem" data-v="amigos" onclick="pick(this,'quem')">Amigos</button>
+    <button class="chip" data-g="quem" data-v="sozinho" onclick="pick(this,'quem')">Sozinho</button>
+    <span class="vsep"></span>
+    <span class="filter-label">Quando?</span>
+    <button class="chip on" data-g="hora" data-v="todos" onclick="pick(this,'hora')">Qualquer hora</button>
+    <button class="chip" data-g="hora" data-v="dia" onclick="pick(this,'hora')">🌤 Dia</button>
+    <button class="chip" data-g="hora" data-v="noite" onclick="pick(this,'hora')">🌙 Noite</button>
+    <span class="vsep"></span>
+    <span class="filter-label">Preço</span>
+    <button class="chip on" data-g="preco" data-v="todos" onclick="pick(this,'preco')">Todos</button>
+    <button class="chip" data-g="preco" data-v="gratis" onclick="pick(this,'preco')">Grátis</button>
+    <button class="chip" data-g="preco" data-v="barato" onclick="pick(this,'preco')">$</button>
+    <button class="chip" data-g="preco" data-v="medio" onclick="pick(this,'preco')">$$</button>
+    <button class="chip" data-g="preco" data-v="premium" onclick="pick(this,'preco')">$$$</button>
+    <span class="vsep"></span>
+    <button class="chip special" data-g="vibe" data-v="calmo" onclick="pickVibe(this)">✦ Menos movimento</button>
+  </div>
+  <div class="cards-grid" id="grid"></div>
+</section>
+
+<!-- MARQUEE 2 -->
+<div class="marquee-band-2">
+  <div class="marquee-track" style="animation-direction:reverse">
+    <span class="m-word" style="color:rgba(255,255,255,0.15)">São Paulo</span><span class="m-sep" style="background:rgba(200,0,30,0.4)"></span>
+    <span class="m-word" style="-webkit-text-stroke:1px rgba(200,0,30,0.5);color:transparent">Explore</span><span class="m-sep" style="background:rgba(200,0,30,0.4)"></span>
+    <span class="m-word" style="color:rgba(255,255,255,0.15)">Descubra</span><span class="m-sep" style="background:rgba(200,0,30,0.4)"></span>
+    <span class="m-word" style="-webkit-text-stroke:1px rgba(200,0,30,0.5);color:transparent">Viva SP</span><span class="m-sep" style="background:rgba(200,0,30,0.4)"></span>
+    <span class="m-word" style="color:rgba(255,255,255,0.15)">São Paulo</span><span class="m-sep" style="background:rgba(200,0,30,0.4)"></span>
+    <span class="m-word" style="-webkit-text-stroke:1px rgba(200,0,30,0.5);color:transparent">Explore</span><span class="m-sep" style="background:rgba(200,0,30,0.4)"></span>
+    <span class="m-word" style="color:rgba(255,255,255,0.15)">Descubra</span><span class="m-sep" style="background:rgba(200,0,30,0.4)"></span>
+    <span class="m-word" style="-webkit-text-stroke:1px rgba(200,0,30,0.5);color:transparent">Viva SP</span><span class="m-sep" style="background:rgba(200,0,30,0.4)"></span>
+  </div>
+</div>
+
+<!-- ROTEIROS -->
+<section class="roteiros-section" id="roteiros">
+  <div class="sec-header">
+    <h2 class="sec-title" style="color:var(--white)">MODOS DE<br><span class="red">VIVER SP</span></h2>
+  </div>
+  <div class="roteiros-grid">
+    <div class="rot-list" id="rotList"></div>
+    <div class="rot-visual">
+      <div class="rot-card" id="rotCard">
+        <div class="rot-card-bg-text" id="rotBg">SP</div>
+        <div class="rot-card-tags" id="rotTags"></div>
+        <div class="rot-card-label">
+          <div class="rot-card-cat" id="rotCat">Roteiro Completo</div>
+          <div class="rot-card-title" id="rotTitle">São Paulo em 1 Dia</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     GUIA COMPLETO POR REGIÕES
+     ══════════════════════════════════════════ -->
+<section class="guia-section cream" id="guia">
+  <div class="sec-header">
+    <h2 class="sec-title">GUIA<br><span class="red">COMPLETO</span><br><span class="light">Por regiões</span></h2>
+  </div>
+
+  <!-- TABS -->
+  <div class="region-tabs">
+    <button class="region-tab active" onclick="showRegion('centro')">Centro</button>
+    <button class="region-tab" onclick="showRegion('zona-oeste')">Zona Oeste</button>
+    <button class="region-tab" onclick="showRegion('zona-sul')">Zona Sul</button>
+    <button class="region-tab" onclick="showRegion('zona-norte')">Zona Norte</button>
+    <button class="region-tab" onclick="showRegion('zona-leste')">Zona Leste</button>
+    <button class="region-tab" onclick="showRegion('paulista')">Av. Paulista</button>
+  </div>
+
+  <!-- ── CENTRO ── -->
+  <div class="region-panel active" id="panel-centro">
+    <div class="region-intro">
+      <div>
+        <div class="region-zone-badge">Região Central</div>
+        <div class="region-name">CENTRO</div>
+        <div class="region-neighborhoods">
+          <span class="nbhd-tag">Sé</span><span class="nbhd-tag">República</span><span class="nbhd-tag">Consolação</span><span class="nbhd-tag">Santa Cecília</span><span class="nbhd-tag">Bixiga</span><span class="nbhd-tag">Liberdade</span><span class="nbhd-tag">Brás</span><span class="nbhd-tag">Bom Retiro</span>
+        </div>
+      </div>
+      <div class="region-desc">O coração histórico, cultural e comercial de São Paulo. Concentra os edifícios mais emblemáticos, o maior número de museus e centros culturais, e uma vida urbana intensa que vai do comércio popular à gastronomia étnica. É também onde a diversidade da cidade se manifesta com mais força. <strong>Dica:</strong> durante o dia é vibrante e seguro; à noite, algumas áreas pedem atenção redobrada.</div>
+    </div>
+
+    <!-- Rolês Históricos -->
+    <div class="cat-block">
+      <div class="cat-block-header">
+        <span class="cat-block-icon">🏛️</span>
+        <span class="cat-block-title">Rolês Históricos</span>
+        <span class="cat-block-count">5 lugares</span>
+      </div>
+      <div class="place-cards">
+        <div class="place-card">
+          <div class="place-card-type">Igreja · Marco histórico</div>
+          <div class="place-card-name">Catedral da Sé</div>
+          <div class="place-card-desc">Marco Zero de São Paulo e uma das maiores catedrais góticas da América Latina. Construída entre 1913 e 1954, é palco de grandes eventos históricos. Conta com vitrais originais belíssimos e torre com vista panorâmica. Cuidado com golpistas na praça ao redor.</div>
+          <div class="place-card-meta">
+            <span class="meta-pill green">✓ Grátis (externo)</span>
+            <span class="meta-pill">📍 Metrô Sé</span>
+            <span class="meta-pill">⏱ 30–60 min</span>
+            <span class="meta-pill yellow">⚠ Segurança moderada</span>
+          </div>
+        </div>
+        <div class="place-card">
+          <div class="place-card-type">Museu · Marco histórico</div>
+          <div class="place-card-name">Pátio do Colégio</div>
+          <div class="place-card-desc">Local exato onde São Paulo nasceu em 25 de janeiro de 1554, fundada pelos jesuítas Manuel da Nóbrega e José de Anchieta. O pátio original foi destruído — o que existe é uma reconstrução fiel. O museu guarda acervo colonial relevante. A placa de fundação está preservada no local.</div>
+          <div class="place-card-meta">
+            <span class="meta-pill">R$ 6 inteira · Igreja grátis</span>
+            <span class="meta-pill">📍 Metrô Sé</span>
+            <span class="meta-pill">⏱ 45–90 min</span>
+            <span class="meta-pill green">✓ Segurança boa</span>
+          </div>
+        </div>
+        <div class="place-card">
+          <div class="place-card-type">Edifício histórico · Mirante</div>
+          <div class="place-card-name">Edifício Martinelli</div>
+          <div class="place-card-desc">Primeiro arranha-céu da América Latina, inaugurado em 1929. Foi o edifício mais alto do Brasil por décadas. A vista do terraço é deslumbrante. O penthouse foi residência do próprio Martinelli. Visita ao terraço gratuita, mas exige agendamento pela Subprefeitura Centro.</div>
+          <div class="place-card-meta">
+            <span class="meta-pill green">✓ Grátis (terraço c/ agendamento)</span>
+            <span class="meta-pill">📍 Metrô República</span>
+            <span class="meta-pill">⏱ 30–60 min</span>
+          </div>
+        </div>
+        <div class="place-card">
+          <div class="place-card-type">Edifício histórico · Mirante</div>
+          <div class="place-card-name">Banespão (Ed. Altino Arantes)</div>
+          <div class="place-card-desc">Vista 360° da cidade do 35º andar, inspirado no Empire State Building. Inaugurado em 1947, foi sede histórica do Banespa. Um dos melhores mirantes de SP, ótimo para fotografar o skyline. Fins de semana podem precisar de reserva pelo site da Zurich.</div>
+          <div class="place-card-meta">
+            <span class="meta-pill">R$ 10 a R$ 20</span>
+            <span class="meta-pill">📍 Metrô São Bento</span>
+            <span class="meta-pill">⏱ 30–45 min</span>
+          </div>
+        </div>
+        <div class="place-card">
+          <div class="place-card-type">Teatro · Patrimônio arquitetônico</div>
+          <div class="place-card-name">Teatro Municipal de SP</div>
+          <div class="place-card-desc">Inaugurado em 1911, inspirado na Ópera de Paris. Sede da Orquestra Sinfônica Municipal e do Balé da Cidade. Ícone absoluto de SP — o foyer e a escadaria são de tirar o fôlego. Existe opção de visita guiada mesmo sem espetáculo. Agenda: ópera, ballet, concertos e recitais.</div>
+          <div class="place-card-meta">
+            <span class="meta-pill">Visita R$ 10–20 · Shows R$ 40–200+</span>
+            <span class="meta-pill">📍 Metrô Anhangabaú</span>
+            <span class="meta-pill">teatromunicipal.org.br</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Rolês Culturais -->
+    <div class="cat-block">
+      <div class="cat-block-header">
+        <span class="cat-block-icon">🎨</span>
+        <span class="cat-block-title">Rolês Culturais</span>
+        <span class="cat-block-count">4 lugares</span>
+      </div>
+      <div class="place-cards">
+        <div class="place-card">
+          <div class="place-card-type">Museu de Arte</div>
+          <div class="place-card-name">Pinacoteca do Estado</div>
+          <div class="place-card-desc">Um dos melhores museus do Brasil — visita obrigatória. Maior acervo de arte brasileira do século XIX e XX, em edifício histórico de 1900 com jardim. Exposições temporárias de alto nível. Às quintas é gratuito e mais movimentado; terça e quarta têm menos fila.</div>
+          <div class="place-card-meta">
+            <span class="meta-pill green">✓ Grátis às quintas</span>
+            <span class="meta-pill">R$ 20 demais dias</span>
+            <span class="meta-pill">📍 Metrô Luz</span>
+            <span class="meta-pill">⏱ 2–3h</span>
+          </div>
+        </div>
+        <div class="place-card">
+          <div class="place-card-type">Casa de Concertos · Patrimônio</div>
+          <div class="place-card-name">Sala São Paulo</div>
+          <div class="place-card-desc">Uma das melhores salas de concerto da América Latina. Sede da Osesp (Orquestra Sinfônica do Estado de SP), instalada na histórica Estação Júlio Prestes, com teto retrátil para controle acústico. O edifício por fora já vale uma visita fotográfica. Reservas: osesp.art.br</div>
+          <div class="place-card-meta">
+            <span class="meta-pill">R$ 30 a R$ 150+</span>
+            <span class="meta-pill">📍 Metrô Luz</span>
+            <span class="meta-pill">⏱ 2–3h</span>
+          </div>
+        </div>
+        <div class="place-card">
+          <div class="place-card-type">Museu interativo · Patrimônio</div>
+          <div class="place-card-name">Museu da Língua Portuguesa</div>
+          <div class="place-card-desc">Experiência imersiva sobre a língua portuguesa — único no mundo. Instalado dentro da Estação da Luz (1901), um dos edifícios mais belos do Brasil. Reconstruído após incêndio em 2021. A fachada vitoriana é um patrimônio arquitetônico de tirar o fôlego.</div>
+          <div class="place-card-meta">
+            <span class="meta-pill green">✓ Grátis aos sábados</span>
+            <span class="meta-pill">R$ 15 demais dias</span>
+            <span class="meta-pill">📍 Metrô Luz</span>
+            <span class="meta-pill">⏱ 1h30–2h30</span>
+          </div>
+        </div>
+        <div class="place-card">
+          <div class="place-card-type">Centro Cultural · Galeria</div>
+          <div class="place-card-name">CCBB — Centro Cultural BB</div>
+          <div class="place-card-desc">Uma das melhores programações culturais da cidade. Teatro, cinema, exposições e shows em belo edifício histórico do século XIX, com café no térreo. A maioria das exposições é gratuita. Programação sempre renovando — verifique em bb.com.br/cultura.</div>
+          <div class="place-card-meta">
+            <span class="meta-pill green">✓ Maioria gratuito</span>
+            <span class="meta-pill">📍 Metrô São Bento</span>
+            <span class="meta-pill">⏱ 1–3h</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Gastronomia -->
+    <div class="cat-block">
+      <div class="cat-block-header">
+        <span class="cat-block-icon">🍽️</span>
+        <span class="cat-block-title">Para Quando a Fome Bate</span>
+        <span class="cat-block-count">5 lugares</span>
+      </div>
+      <div class="place-cards">
+        <div class="place-card">
+          <div class="place-card-type">Restaurante Italiano</div>
+          <div class="place-card-name">Família Mancini</div>
+          <div class="place-card-desc">Uma das casas italianas mais tradicionais de SP. Fica no Bixiga — o bairro italiano da cidade. Ambiente clássico, caloroso e animado. Pratos: nhoque ao sugo, ossobuco, frutos do mar, massas frescas, tiramisu. Combine com passeio pela Rua Treze de Maio.</div>
+          <div class="place-card-meta">
+            <span class="meta-pill">R$ 80–150 / pessoa</span>
+            <span class="meta-pill">📍 Metrô Brigadeiro</span>
+            <span class="meta-pill red">Reserva necessária</span>
+          </div>
+        </div>
+        <div class="place-card">
+          <div class="place-card-type">Mercado Gastronômico · Patrimônio</div>
+          <div class="place-card-name">Mercadão (Mercado Municipal)</div>
+          <div class="place-card-desc">Programa obrigatório em SP. O sanduíche de mortadela virou símbolo da cidade. Os vitrais art nouveau do edifício de 1933 são lindos. Chegue cedo para evitar filas. Sábado de manhã tem mais movimento e ambiente; dias de semana são mais tranquilos.</div>
+          <div class="place-card-meta">
+            <span class="meta-pill">Mortadela R$ 20–35</span>
+            <span class="meta-pill">📍 Metrô São Bento</span>
+            <span class="meta-pill">⏱ Aberto 6h–18h (Seg–Sáb)</span>
+          </div>
+        </div>
+        <div class="place-card">
+          <div class="place-card-type">Bairro gastronômico asiático</div>
+          <div class="place-card-name">Liberdade — Gastronomia Asiática</div>
+          <div class="place-card-desc">O maior bairro japonês fora do Japão. Ramen, sushi, yakisoba, karaage, doces japoneses e muito mais. Nos fins de semana a Feira da Liberdade vende comida, artesanato e produtos asiáticos. Os lanternes vermelhos e torii gates na Rua Galvão Bueno são fotogênicos.</div>
+          <div class="place-card-meta">
+            <span class="meta-pill">R$ 20–100+</span>
+            <span class="meta-pill">📍 Metrô Liberdade</span>
+            <span class="meta-pill">Feira: fim de semana</span>
+          </div>
+        </div>
+        <div class="place-card">
+          <div class="place-card-type">Pizzaria Italiana Tradicional</div>
+          <div class="place-card-name">Speranza Pizzaria</div>
+          <div class="place-card-desc">Uma das pizzarias mais tradicionais de SP, no Bixiga desde 1958. Ambiente clássico italiano e animado, frequentado por famílias, casais e grupos. Sugestões: pizza de calabresa, muçarela e carne-seca. Caminhe pela rua para explorar outras opções do bairro.</div>
+          <div class="place-card-meta">
+            <span class="meta-pill">R$ 60–100 / pessoa</span>
+            <span class="meta-pill">📍 Metrô Brigadeiro</span>
+            <span class="meta-pill red">Reserva necessária</span>
+          </div>
+        </div>
+        <div class="place-card">
+          <div class="place-card-type">Padaria Artesanal</div>
+          <div class="place-card-name">Padaria Dona Deôla</div>
+          <div class="place-card-desc">Uma das redes de padaria mais queridas de SP, com várias unidades pela cidade. Pão de qualidade e café da manhã completo. Sugestões: pão na chapa, croissant, beirute, café coado e bolo de milho. Não precisa de reserva — funcionamento das 7h às 21h.</div>
+          <div class="place-card-meta">
+            <span class="meta-pill">R$ 15–50 / pessoa</span>
+            <span class="meta-pill">📍 Metrô Consolação</span>
+            <span class="meta-pill green">Sem reserva</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Rolês Gratuitos e Noturnos -->
+    <div class="cat-block">
+      <div class="cat-block-header">
+        <span class="cat-block-icon">🌿</span>
+        <span class="cat-block-title">Rolês Gratuitos & Ao Ar Livre</span>
+        <span class="cat-block-count">3 lugares</span>
+      </div>
+      <div class="place-cards">
+        <div class="place-card">
+          <div class="place-card-type">Parque histórico</div>
+          <div class="place-card-name">Jardim da Luz</div>
+          <div class="place-card-desc">Um dos parques históricos mais bonitos do Centro. Jardim do século XIX com esculturas, fontes e arborização densa. Fica ao lado da Pinacoteca e da Estação da Luz — ótimo para combinar as visitas. Evite horários noturnos e cantos isolados.</div>
+          <div class="place-card-meta">
+            <span class="meta-pill green">✓ Gratuito</span>
+            <span class="meta-pill">📍 Metrô Luz</span>
+            <span class="meta-pill">Pets permitidos</span>
+            <span class="meta-pill yellow">⚠ Segurança moderada à noite</span>
+          </div>
+        </div>
+        <div class="place-card">
+          <div class="place-card-type">Espaço público · Eventos</div>
+          <div class="place-card-name">Vale do Anhangabaú</div>
+          <div class="place-card-desc">Coração do Centro histórico, palco de grandes eventos como Virada Cultural, Carnaval de Rua e shows gratuitos. Vista linda do Viaduto do Chá. Revitalizado e ativado com mercados e eventos nos fins de semana. Verifique a agenda da Prefeitura.</div>
+          <div class="place-card-meta">
+            <span class="meta-pill green">✓ Gratuito</span>
+            <span class="meta-pill">📍 Metrô Anhangabaú</span>
+            <span class="meta-pill yellow">⚠ Mais seguro em eventos</span>
+          </div>
+        </div>
+        <div class="place-card">
+          <div class="place-card-type">Centro Cultural</div>
+          <div class="place-card-name">Centro Cultural SP (CCSP)</div>
+          <div class="place-card-desc">Um dos centros culturais mais ativos e gratuitos de SP. Teatro, cinema, biblioteca, exposições e shows — tudo gratuito ou a preços populares. Programação intensa e diversificada, frequentes exposições temporárias. Programação em centrocultural.sp.gov.br</div>
+          <div class="place-card-meta">
+            <span class="meta-pill green">✓ Gratuito</span>
+            <span class="meta-pill">📍 Metrô Vergueiro</span>
+            <span class="meta-pill">⏱ Ter–Sáb 10h–20h</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Vida Noturna Centro -->
+    <div class="cat-block">
+      <div class="cat-block-header">
+        <span class="cat-block-icon">🌙</span>
+        <span class="cat-block-title">Rolês Noturnos</span>
+        <span class="cat-block-count">2 lugares</span>
+      </div>
+      <div class="place-cards">
+        <div class="place-card">
+          <div class="place-card-type">Rua de bares · Vida noturna</div>
+          <div class="place-card-name">Rua Aurora (Santa Cecília)</div>
+          <div class="place-card-desc">Uma das ruas de bares mais tradicionais do Centro, com atmosfera autêntica e sem frescura. Mix de público muito diverso. Estilo musical: rock, MPB, independente, samba e pop. Horário de pico: 22h às 2h. Boa para quem quer noite real sem o glamour de Pinheiros. Vá de Uber.</div>
+          <div class="place-card-meta">
+            <span class="meta-pill">📍 Metrô Santa Cecília</span>
+            <span class="meta-pill">Qui / Sex / Sáb</span>
+            <span class="meta-pill yellow">⚠ Atenção com pertences</span>
+          </div>
+        </div>
+        <div class="place-card">
+          <div class="place-card-type">Bairro boêmio · Bares</div>
+          <div class="place-card-name">Bixiga (Bela Vista) — Noite</div>
+          <div class="place-card-desc">Uma das regiões boêmias mais tradicionais de SP. Bairro italiano com bares de samba ao vivo, ambiente histórico e charmoso. Estilo: samba, MPB, jazz e forró. Destaques: Bar do Bixiga, Cachaçaria Água Doce, bares de samba na Treze de Maio. Ótimo para jantar e curtir a noite.</div>
+          <div class="place-card-meta">
+            <span class="meta-pill">📍 Metrô Brigadeiro</span>
+            <span class="meta-pill">Sex / Sáb · 20h–0h</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Compras Centro -->
+    <div class="cat-block">
+      <div class="cat-block-header">
+        <span class="cat-block-icon">🛍️</span>
+        <span class="cat-block-title">Compras</span>
+        <span class="cat-block-count">3 lugares</span>
+      </div>
+      <div class="place-cards">
+        <div class="place-card">
+          <div class="place-card-type">Rua comercial popular</div>
+          <div class="place-card-name">Rua 25 de Março</div>
+          <div class="place-card-desc">Uma das ruas mais movimentadas do Brasil, com preços de atacado em artigos de festa, brinquedos, bijuterias, tecidos e decoração. Evite fins de semana e véspera de Natal/Carnaval. Carregue o mínimo necessário — área de atenção com carteiristas.</div>
+          <div class="place-card-meta">
+            <span class="meta-pill green">✓ Preços baixíssimos</span>
+            <span class="meta-pill">📍 Metrô São Bento</span>
+            <span class="meta-pill yellow">⚠ Cuidado com pertences</span>
+          </div>
+        </div>
+        <div class="place-card">
+          <div class="place-card-type">Feira de rua asiática</div>
+          <div class="place-card-name">Feira da Liberdade</div>
+          <div class="place-card-desc">Uma das feiras mais tradicionais de SP, funcionando desde 1975. Artesanato japonês, cerâmica, cosplay, comida japonesa de rua e produtos asiáticos importados. Atrações culturais frequentes. Domingos é a feira principal (9h–19h); sábados também tem. Segurança boa.</div>
+          <div class="place-card-meta">
+            <span class="meta-pill green">✓ Entrada gratuita</span>
+            <span class="meta-pill">R$ 5–100 (produtos)</span>
+            <span class="meta-pill">📍 Metrô Liberdade</span>
+          </div>
+        </div>
+        <div class="place-card">
+          <div class="place-card-type">Polo de moda · Atacado</div>
+          <div class="place-card-name">Polo Comercial do Brás</div>
+          <div class="place-card-desc">O maior polo de moda do Brasil. Roupas, calçados, acessórios, lingerie, moda praia, fitness e infantil a preços de atacado. Muitas galerias cobertas além das ruas principais. Prefira dias de semana — fins de semana ficam muito cheios. Atenção com pertences em áreas movimentadas.</div>
+          <div class="place-card-meta">
+            <span class="meta-pill green">✓ Preços baixos</span>
+            <span class="meta-pill">📍 Metrô Brás</span>
+            <span class="meta-pill">⏱ 8h–18h</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div><!-- /panel-centro -->
+
+  <!-- ── ZONA OESTE ── -->
+  <div class="region-panel" id="panel-zona-oeste">
+    <div class="region-intro">
+      <div>
+        <div class="region-zone-badge">Região Oeste</div>
+        <div class="region-name">ZONA OESTE</div>
+        <div class="region-neighborhoods">
+          <span class="nbhd-tag">Pinheiros</span><span class="nbhd-tag">Vila Madalena</span><span class="nbhd-tag">Jardins</span><span class="nbhd-tag">Itaim Bibi</span><span class="nbhd-tag">Higienópolis</span><span class="nbhd-tag">Perdizes</span><span class="nbhd-tag">Lapa</span>
+        </div>
+      </div>
+      <div class="region-desc">A Zona Oeste concentra os bairros mais sofisticados, criativos e boêmios de SP. De Pinheiros à Vila Madalena, passando pelos Jardins e Itaim Bibi — a maior densidade de restaurantes premiados, bares autorais, galerias de arte e a boemia paulistana mais celebrada. Muito segura e bem servida de metrô.</div>
+    </div>
+
+    <!-- Pinheiros accordion -->
+    <div class="bairro-accordion">
+      <div class="bairro-header" onclick="toggleBairro(this)">
+        <div class="bairro-header-left">
+          <div class="bairro-header-name">Pinheiros</div>
+          <div class="bairro-header-sub">Bairro jovem, criativo e gastronômico — um dos maiores polos de SP</div>
+        </div>
+        <span class="bairro-arrow">▶</span>
+      </div>
+      <div class="bairro-body">
+        <div class="place-cards">
+          <div class="place-card">
+            <div class="place-card-type">Alta Gastronomia</div>
+            <div class="place-card-name">Chou Restaurante</div>
+            <div class="place-card-desc">Referência da alta gastronomia paulistana. Cardápio sazonal que muda frequentemente, com ingredientes locais. Ambiente sofisticado, intimista, moderno com iluminação baixa. Uma das melhores experiências gastronômicas da cidade. Reserve com bastante antecedência.</div>
+            <div class="place-card-meta"><span class="meta-pill">R$ 150–300/pessoa</span><span class="meta-pill">📍 Metrô Faria Lima</span><span class="meta-pill red">Reserva obrigatória</span></div>
+          </div>
+          <div class="place-card">
+            <div class="place-card-type">Mercado gastronômico</div>
+            <div class="place-card-name">Mercado de Pinheiros</div>
+            <div class="place-card-desc">Um dos mercados mais charmosos de SP. Pastéis, caldo de cana, frutas tropicais, queijos artesanais e frios importados. Tem restaurantes dentro para refeição completa. Ótimo ponto de partida para o dia em Pinheiros. Melhor no sábado de manhã.</div>
+            <div class="place-card-meta"><span class="meta-pill">R$ 20–60/pessoa</span><span class="meta-pill">📍 Metrô Faria Lima</span><span class="meta-pill green">Sem reserva</span></div>
+          </div>
+          <div class="place-card">
+            <div class="place-card-type">Rua de bares · Vida noturna</div>
+            <div class="place-card-name">Baixo Pinheiros / Rua Artur de Azevedo</div>
+            <div class="place-card-desc">Uma das melhores regiões para a noite em SP. Atmosfera descontraída e sofisticada sem ser frescura. Estilo: MPB, jazz, indie e eletrônico. Destaques: Astor (bar icônico), A Garagem, Posto 6, Clube da Esquina. Muitas opções a curta distância a pé. Horário de pico: 21h às 2h.</div>
+            <div class="place-card-meta"><span class="meta-pill">📍 Metrô Faria Lima</span><span class="meta-pill">Qui / Sex / Sáb</span></div>
+          </div>
+          <div class="place-card">
+            <div class="place-card-type">Instituto Cultural · Fotografia</div>
+            <div class="place-card-name">Instituto Moreira Salles (IMS)</div>
+            <div class="place-card-desc">O melhor instituto de fotografia do Brasil e referência mundial em fotografia documental. Maior acervo fotográfico do país, com exposições de altíssimo nível. Biblioteca especializada e café com vista. Exposições frequentes sobre história, cultura e fotografia brasileira.</div>
+            <div class="place-card-meta"><span class="meta-pill green">✓ Gratuito</span><span class="meta-pill">📍 Metrô Consolação</span><span class="meta-pill">⏱ 1–2h</span></div>
+          </div>
+          <div class="place-card">
+            <div class="place-card-type">Rua especializada</div>
+            <div class="place-card-name">Rua Teodoro Sampaio</div>
+            <div class="place-card-desc">A "rua dos instrumentos" de São Paulo — especializada em instrumentos musicais, partituras e acessórios. Também tem lojas de arte, decoração e gastronomia no entorno. Ideal para músicos e amantes de cultura.</div>
+            <div class="place-card-meta"><span class="meta-pill">R$ 30 a R$ 3.000+</span><span class="meta-pill">📍 Metrô Clínicas</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Vila Madalena accordion -->
+    <div class="bairro-accordion">
+      <div class="bairro-header" onclick="toggleBairro(this)">
+        <div class="bairro-header-left">
+          <div class="bairro-header-name">Vila Madalena</div>
+          <div class="bairro-header-sub">O bairro mais boêmio e artístico de SP — o "cool" por excelência</div>
+        </div>
+        <span class="bairro-arrow">▶</span>
+      </div>
+      <div class="bairro-body">
+        <div class="place-cards">
+          <div class="place-card">
+            <div class="place-card-type">Arte urbana · Galeria a céu aberto</div>
+            <div class="place-card-name">Beco do Batman</div>
+            <div class="place-card-desc">Um dos pontos turísticos mais fotogênicos de SP. Beco de 100m coberto de grafites que se renovam periodicamente — cada visita pode ter arte diferente. Ícone cultural da cidade. Chegue cedo nos fins de semana para fotos sem multidão. Muito instagramável.</div>
+            <div class="place-card-meta"><span class="meta-pill green">✓ Gratuito</span><span class="meta-pill">📍 Metrô Vila Madalena</span><span class="meta-pill">⏱ 10h–18h</span></div>
+          </div>
+          <div class="place-card">
+            <div class="place-card-type">Café especialidade</div>
+            <div class="place-card-name">Coffee Lab</div>
+            <div class="place-card-desc">Referência nacional em café de especialidade. O barista Isabela Raposeiras é uma das mais premiadas do mundo. Café próprio, torrado na casa. Ambiente intimista e aconchegante — ideal para estudar, trabalhar ou ficar um bom tempo. Sugestões: V60, AeroPress, cappuccino especial.</div>
+            <div class="place-card-meta"><span class="meta-pill">R$ 15–50/pessoa</span><span class="meta-pill">📍 Metrô Vila Madalena</span><span class="meta-pill green">Sem reserva</span></div>
+          </div>
+          <div class="place-card">
+            <div class="place-card-type">Bar de samba · Shows ao vivo</div>
+            <div class="place-card-name">Ó do Borogodó</div>
+            <div class="place-card-desc">Um dos bares de samba mais tradicionais e amados de SP. Uma das experiências noturnas mais autênticas da cidade — qualidade musical geralmente excepcional. Estilo: samba, MPB, Bossa Nova ao vivo. Couvert artístico ~R$ 30–50. Sexta e sábado são os melhores dias.</div>
+            <div class="place-card-meta"><span class="meta-pill">Couvert R$ 30–50</span><span class="meta-pill">📍 Metrô Vila Madalena</span><span class="meta-pill red">Reserva recomendada</span></div>
+          </div>
+          <div class="place-card">
+            <div class="place-card-type">Galeria de arte contemporânea</div>
+            <div class="place-card-name">Galeria Fortes D'Aloia & Gabriel</div>
+            <div class="place-card-desc">Uma das galerias mais importantes do Brasil e destaque na cena contemporânea da América Latina. Exposições temporárias sempre em cartaz. Ambiente contemporâneo, elegante e silencioso. Frequentado por artistas, curadores e colecionadores.</div>
+            <div class="place-card-meta"><span class="meta-pill green">✓ Gratuito</span><span class="meta-pill">📍 Metrô Vila Madalena</span><span class="meta-pill">⏱ 30–60 min</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Jardins accordion -->
+    <div class="bairro-accordion">
+      <div class="bairro-header" onclick="toggleBairro(this)">
+        <div class="bairro-header-left">
+          <div class="bairro-header-name">Jardins</div>
+          <div class="bairro-header-sub">O bairro mais elegante de SP — lojas de grife, alta gastronomia e ares europeus</div>
+        </div>
+        <span class="bairro-arrow">▶</span>
+      </div>
+      <div class="bairro-body">
+        <div class="place-cards">
+          <div class="place-card">
+            <div class="place-card-type">Rua de grifes</div>
+            <div class="place-card-name">Rua Oscar Freire</div>
+            <div class="place-card-desc">Uma das ruas mais famosas do Brasil. Moda de luxo (Daslu, Forum, Animale), joalherias, perfumarias e calçados premium em ambiente elegante e arborizado. Além das lojas, tem cafés, restaurantes e sorveterias de qualidade. Ótima para passeio mesmo sem comprar.</div>
+            <div class="place-card-meta"><span class="meta-pill">Alto padrão</span><span class="meta-pill">📍 Metrô Consolação</span></div>
+          </div>
+          <div class="place-card">
+            <div class="place-card-type">Alta gastronomia brasileira</div>
+            <div class="place-card-name">Restaurante Maní</div>
+            <div class="place-card-desc">Um dos top 3 restaurantes de SP. Experiência gastronômica inesquecível com menu degustação de ingredientes brasileiros e harmonização com vinhos nacionais. Chef Helena Rizzo é premiada internacionalmente. Reservas abertas com meses de antecedência — jardim interno charmoso.</div>
+            <div class="place-card-meta"><span class="meta-pill">R$ 200–500+/pessoa</span><span class="meta-pill red">Reserva meses antes</span></div>
+          </div>
+          <div class="place-card">
+            <div class="place-card-type">Shopping de luxo</div>
+            <div class="place-card-name">Shopping Iguatemi SP</div>
+            <div class="place-card-desc">O primeiro shopping do Brasil (inaugurado em 1966) e ainda referência de luxo. Grifes nacionais e internacionais, joias, eletrônicos premium e gastronomia. Ambiente luxuoso e bem conservado. Prefira dias de semana para menos movimento.</div>
+            <div class="place-card-meta"><span class="meta-pill">📍 Metrô Faria Lima</span><span class="meta-pill">⏱ 10h–22h</span></div>
+          </div>
+          <div class="place-card">
+            <div class="place-card-type">Parque urbano</div>
+            <div class="place-card-name">Parque Trianon</div>
+            <div class="place-card-desc">Um oásis de Mata Atlântica no coração da Avenida Paulista. Surpreendente pela proximidade do maior eixo comercial da cidade. Trilhas sombreadas, banco tranquilo e mata nativa densa. Ideal para um respiro no meio do dia. Gratuito, com entrada direta do Metrô Trianon-MASP.</div>
+            <div class="place-card-meta"><span class="meta-pill green">✓ Gratuito</span><span class="meta-pill">📍 Metrô Trianon-MASP</span><span class="meta-pill">Pets permitidos</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Higienópolis accordion -->
+    <div class="bairro-accordion">
+      <div class="bairro-header" onclick="toggleBairro(this)">
+        <div class="bairro-header-left">
+          <div class="bairro-header-name">Higienópolis</div>
+          <div class="bairro-header-sub">Elegante e residencial — arquitetura art déco, parques charmosos e cultura</div>
+        </div>
+        <span class="bairro-arrow">▶</span>
+      </div>
+      <div class="bairro-body">
+        <div class="place-cards">
+          <div class="place-card">
+            <div class="place-card-type">Praça · Feira orgânica</div>
+            <div class="place-card-name">Praça Buenos Aires</div>
+            <div class="place-card-desc">Uma das mais belas praças de SP, com a feira de produtores orgânicos imperdível toda quinta-feira (7h–14h). Produtos frescos, orgânicos e artesanais. Um dos programas favoritos dos moradores. Ambiente tranquilo, arbóreo e sofisticado — pets bem-vindos.</div>
+            <div class="place-card-meta"><span class="meta-pill green">✓ Gratuito</span><span class="meta-pill">📍 Metrô Santa Cecília</span><span class="meta-pill">Quinta-feira</span></div>
+          </div>
+          <div class="place-card">
+            <div class="place-card-type">Shopping médio-alto padrão</div>
+            <div class="place-card-name">Shopping Higienópolis</div>
+            <div class="place-card-desc">Sofisticado, familiar e bem frequentado. Moda, gastronomia e cinema. Destaque para a Livraria Cultura interna — uma das mais belas do Brasil, ótima para curtir sozinho. Bom para um dia de compras e lazer em área segura e arbórea.</div>
+            <div class="place-card-meta"><span class="meta-pill">📍 Metrô Santa Cecília (12 min)</span><span class="meta-pill">⏱ 10h–22h</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div><!-- /panel-zona-oeste -->
+
+  <!-- ── ZONA SUL ── -->
+  <div class="region-panel" id="panel-zona-sul">
+    <div class="region-intro">
+      <div>
+        <div class="region-zone-badge">Região Sul</div>
+        <div class="region-name">ZONA SUL</div>
+        <div class="region-neighborhoods">
+          <span class="nbhd-tag">Moema</span><span class="nbhd-tag">Vila Mariana</span><span class="nbhd-tag">Ibirapuera</span><span class="nbhd-tag">Vila Olímpia</span><span class="nbhd-tag">Itaim Bibi</span><span class="nbhd-tag">Brooklin</span><span class="nbhd-tag">Santo Amaro</span><span class="nbhd-tag">Aclimação</span>
+        </div>
+      </div>
+      <div class="region-desc">A Zona Sul é a mais diversa em termos de paisagem e perfil social. Concentra o Parque do Ibirapuera (o pulmão verde de SP), bairros sofisticados como Moema e Vila Mariana, zonas gastronômicas do Brooklin e Vila Olímpia, e o polo financeiro do Itaim Bibi com vida noturna intensa.</div>
+    </div>
+
+    <div class="cat-block">
+      <div class="cat-block-header"><span class="cat-block-icon">🌿</span><span class="cat-block-title">Parques & Ao Ar Livre</span><span class="cat-block-count">4 lugares</span></div>
+      <div class="place-cards">
+        <div class="place-card">
+          <div class="place-card-type">Parque urbano · Complexo cultural</div>
+          <div class="place-card-name">Parque do Ibirapuera</div>
+          <div class="place-card-desc">OBRIGATÓRIO — o parque mais importante de São Paulo e uma das áreas verdes urbanas mais importantes do mundo. Projetado por Oscar Niemeyer e Burle Marx. Corrida, ciclismo, piquenique, museus (MAM, Museu Afro Brasil), lago com cisnes e capivaras, shows na Concha Acústica. Vá cedo no fim de semana (mais de 30 mil pessoas/dia).</div>
+          <div class="place-card-meta"><span class="meta-pill green">✓ Gratuito</span><span class="meta-pill">📍 Metrô Moema ou Ana Rosa</span><span class="meta-pill">Pets na entrada 3</span></div>
+        </div>
+        <div class="place-card">
+          <div class="place-card-type">Museu de arte moderna</div>
+          <div class="place-card-name">MAM — Museu de Arte Moderna</div>
+          <div class="place-card-desc">Grande acervo de arte moderna e contemporânea brasileira dentro do Ibirapuera (Portão 3). Exposições temporárias frequentes e de alto nível. O jardim externo com esculturas é lindo para caminhar. Às terças é gratuito e mais tranquilo.</div>
+          <div class="place-card-meta"><span class="meta-pill green">✓ Grátis às terças</span><span class="meta-pill">R$ 20 demais dias</span><span class="meta-pill">⏱ 1–2h</span></div>
+        </div>
+        <div class="place-card">
+          <div class="place-card-type">Museu cultural afro-brasileiro</div>
+          <div class="place-card-name">Museu Afro Brasil</div>
+          <div class="place-card-desc">O mais importante museu sobre cultura afro-brasileira do país, essencial para entender a formação cultural do Brasil. Acervo com mais de 10.000 obras cobrindo a história da África, diáspora africana e contribuição afro-brasileira à cultura nacional. Dentro do Ibirapuera (Portão 10).</div>
+          <div class="place-card-meta"><span class="meta-pill green">✓ Grátis aos sábados</span><span class="meta-pill">R$ 15 demais dias</span><span class="meta-pill">⏱ 1h30–2h30</span></div>
+        </div>
+        <div class="place-card">
+          <div class="place-card-type">Parque urbano</div>
+          <div class="place-card-name">Parque da Aclimação</div>
+          <div class="place-card-desc">Um dos parques mais charmosos e menos conhecidos de SP. Lago central com patos e cisnes, mirante com vista para o bairro e pista de cooper. Ótimo para escapar do movimento sem sair muito do centro. Tranquilo, verde e familiar — pets permitidos com guia.</div>
+          <div class="place-card-meta"><span class="meta-pill green">✓ Gratuito</span><span class="meta-pill">📍 Metrô Ana Rosa (20 min)</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cat-block">
+      <div class="cat-block-header"><span class="cat-block-icon">🏛️</span><span class="cat-block-title">Rolês Históricos</span><span class="cat-block-count">2 lugares</span></div>
+      <div class="place-cards">
+        <div class="place-card">
+          <div class="place-card-type">Museu histórico · Patrimônio nacional</div>
+          <div class="place-card-name">Museu Paulista (Museu do Ipiranga)</div>
+          <div class="place-card-desc">O museu histórico mais importante de SP — um dos mais visitados do Brasil. Local da Proclamação da Independência do Brasil (1822). Reaberto em 2022 após restauro; jardins impecáveis. Acervo histórico excepcional, incluindo o quadro "Independência ou Morte" de Pedro Américo.</div>
+          <div class="place-card-meta"><span class="meta-pill green">✓ Grátis aos sábados</span><span class="meta-pill">R$ 15 demais dias</span><span class="meta-pill">⏱ 2–3h</span></div>
+        </div>
+        <div class="place-card">
+          <div class="place-card-type">Estádio de futebol</div>
+          <div class="place-card-name">Morumbi (Estádio Cícero Pompeu)</div>
+          <div class="place-card-desc">Um dos estádios mais tradicionais do futebol brasileiro — casa do São Paulo FC. Tour disponível em dias sem jogo. Não tem metrô próximo — vá de ônibus, carro ou Uber.</div>
+          <div class="place-card-meta"><span class="meta-pill">R$ 30–250+ (ingresso)</span><span class="meta-pill yellow">⚠ Sem metrô próximo</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cat-block">
+      <div class="cat-block-header"><span class="cat-block-icon">🌙</span><span class="cat-block-title">Vida Noturna — Itaim e Vila Olímpia</span><span class="cat-block-count">2 lugares</span></div>
+      <div class="place-cards">
+        <div class="place-card">
+          <div class="place-card-type">Bairro gastronômico premium</div>
+          <div class="place-card-name">Itaim Bibi — Noite</div>
+          <div class="place-card-desc">Onde os executivos e classe A de SP vão jantar e beber bem. Mais sofisticado que a Vila Madalena, mais discreto que os Jardins. Restaurantes de alta gastronomia, bares autorais e lounges na Rua João Cachoeira. Estilo: MPB, jazz e pop sofisticado. Horário de pico: 20h às 2h.</div>
+          <div class="place-card-meta"><span class="meta-pill">📍 Metrô Faria Lima</span><span class="meta-pill">Qui–Sáb · 28–45 anos</span></div>
+        </div>
+        <div class="place-card">
+          <div class="place-card-type">Rua de bares e baladas</div>
+          <div class="place-card-name">Rua Pequetita (Vila Olímpia)</div>
+          <div class="place-card-desc">Um dos epicentros da vida noturna jovem de SP. Múltiplas casas noturnas, bares e restaurantes em uma só rua. Muito movimentado nas madrugadas de fim de semana. Estilo: eletrônico, funk, pop e axé. Horário de pico: 23h às 4h. Dress code: social.</div>
+          <div class="place-card-meta"><span class="meta-pill">Entrada R$ 20–80</span><span class="meta-pill">📍 Metrô Vila Olímpia</span></div>
+        </div>
+      </div>
+    </div>
+  </div><!-- /panel-zona-sul -->
+
+  <!-- ── ZONA NORTE ── -->
+  <div class="region-panel" id="panel-zona-norte">
+    <div class="region-intro">
+      <div>
+        <div class="region-zone-badge">Região Norte</div>
+        <div class="region-name">ZONA NORTE</div>
+        <div class="region-neighborhoods">
+          <span class="nbhd-tag">Santana</span><span class="nbhd-tag">Tucuruvi</span><span class="nbhd-tag">Casa Verde</span><span class="nbhd-tag">Vila Guilherme</span><span class="nbhd-tag">Tremembé</span><span class="nbhd-tag">Jaçanã</span>
+        </div>
+      </div>
+      <div class="region-desc">Marcada pela diversidade cultural, forte presença nordestina e algumas das áreas verdes mais preservadas de São Paulo. É uma região de contrastes — com bairros residenciais tranquilos como Santana e algumas das maiores reservas de Mata Atlântica urbana do mundo.</div>
+    </div>
+    <div class="cat-block">
+      <div class="cat-block-header"><span class="cat-block-icon">🌲</span><span class="cat-block-title">Parques & Natureza</span><span class="cat-block-count">2 lugares</span></div>
+      <div class="place-cards">
+        <div class="place-card">
+          <div class="place-card-type">Parque de ecoturismo · Reserva florestal</div>
+          <div class="place-card-name">Parque Estadual da Cantareira</div>
+          <div class="place-card-desc">A maior reserva de Mata Atlântica em área urbana do mundo — 7.916 hectares dentro de São Paulo. O Núcleo Pedra Grande tem o mirante mais espetacular com vista panorâmica de toda a cidade. Vá de carro se possível. Levante cedo para ver o nascer do sol acima das nuvens.</div>
+          <div class="place-card-meta"><span class="meta-pill green">✓ Gratuito</span><span class="meta-pill">📍 Metrô Tucuruvi + ônibus</span><span class="meta-pill">Fácil a Moderado</span><span class="meta-pill red">Pets não permitidos</span></div>
+        </div>
+        <div class="place-card">
+          <div class="place-card-type">Parque · Jardim botânico</div>
+          <div class="place-card-name">Horto Florestal</div>
+          <div class="place-card-desc">Antigo viveiro de plantas da Cantareira com árvores centenárias e riacho natural dentro do parque. Muito amado pelos moradores da Zona Norte — ótimo para famílias com crianças. Trilhas fáceis, piquenique, quadras, playground e rio. Pets permitidos na área de lazer.</div>
+          <div class="place-card-meta"><span class="meta-pill green">✓ Gratuito</span><span class="meta-pill">⏱ 6h–17h</span><span class="meta-pill">Nível fácil</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="cat-block">
+      <div class="cat-block-header"><span class="cat-block-icon">🏢</span><span class="cat-block-title">Eventos & Compras</span><span class="cat-block-count">3 lugares</span></div>
+      <div class="place-cards">
+        <div class="place-card">
+          <div class="place-card-type">Centro de exposições</div>
+          <div class="place-card-name">Expo Center Norte</div>
+          <div class="place-card-desc">O maior centro de exposições da América Latina. Sede do Festival do Japão (maior evento japonês fora do Japão), feiras de negócios, shows e grandes eventos ao longo do ano.</div>
+          <div class="place-card-meta"><span class="meta-pill">📍 Metrô Carandiru</span></div>
+        </div>
+        <div class="place-card">
+          <div class="place-card-type">Shopping popular</div>
+          <div class="place-card-name">Shopping Center Norte</div>
+          <div class="place-card-desc">Um dos maiores e mais frequentados shoppings de SP. Diferencialmente tem o Playcenter dentro do shopping. Ótimo para famílias pela diversidade de atrações. Moda popular, eletrônicos, gastronomia e cinema.</div>
+          <div class="place-card-meta"><span class="meta-pill">📍 Metrô Carandiru (ônibus)</span><span class="meta-pill">⏱ 10h–22h</span></div>
+        </div>
+        <div class="place-card">
+          <div class="place-card-type">Feira atacadista</div>
+          <div class="place-card-name">Feira da Madrugada (Brás)</div>
+          <div class="place-card-desc">O maior mercado atacadista de moda do Brasil — acontece literalmente de madrugada (1h às 9h). Roupas, calçados e acessórios a preços de fábrica. Experiência única mas exige cuidado. Vá em grupo se possível. Use dinheiro vivo. Leve sacolas.</div>
+          <div class="place-card-meta"><span class="meta-pill green">✓ Preços de atacado</span><span class="meta-pill">📍 Metrô Brás</span><span class="meta-pill red">⚠ Atenção redobrada</span></div>
+        </div>
+      </div>
+    </div>
+  </div><!-- /panel-zona-norte -->
+
+  <!-- ── ZONA LESTE ── -->
+  <div class="region-panel" id="panel-zona-leste">
+    <div class="region-intro">
+      <div>
+        <div class="region-zone-badge">Região Leste</div>
+        <div class="region-name">ZONA LESTE</div>
+        <div class="region-neighborhoods">
+          <span class="nbhd-tag">Tatuapé</span><span class="nbhd-tag">Mooca</span><span class="nbhd-tag">Penha</span><span class="nbhd-tag">Itaquera</span><span class="nbhd-tag">São Miguel Paulista</span><span class="nbhd-tag">Vila Prudente</span>
+        </div>
+      </div>
+      <div class="region-desc">A maior região em população de São Paulo e um polo de identidade cultural genuína. Berço do funk paulistano, do pagode e de uma cena cultural independente e vibrante. Tem o estádio do Corinthians, o bairro histórico da Mooca, o charmoso Tatuapé e feiras autênticas.</div>
+    </div>
+    <div class="cat-block">
+      <div class="cat-block-header"><span class="cat-block-icon">⚽</span><span class="cat-block-title">Esportes & Cultura</span><span class="cat-block-count">4 lugares</span></div>
+      <div class="place-cards">
+        <div class="place-card">
+          <div class="place-card-type">Estádio de futebol</div>
+          <div class="place-card-name">Neo Química Arena (Corinthians)</div>
+          <div class="place-card-desc">Experiência única de futebol em um dos maiores estádios do Brasil (~47.000 lugares). Construído para a Copa do Mundo 2014. Ambiente elétrico e apaixonante. Tour disponível em dias sem jogo. Vá de metrô — trânsito é caótico antes dos jogos.</div>
+          <div class="place-card-meta"><span class="meta-pill">R$ 40–300+</span><span class="meta-pill">📍 Metrô Corinthians-Itaquera</span></div>
+        </div>
+        <div class="place-card">
+          <div class="place-card-type">Complexo cultural · Cervejaria histórica</div>
+          <div class="place-card-name">Cervejaria Bohemia (Mooca)</div>
+          <div class="place-card-desc">Um dos exemplos mais bonitos de reaproveitamento de patrimônio industrial em SP. Antiga fábrica da Bohemia restaurada e transformada em polo gastronômico com arquitetura industrial preservada. Eventos culturais frequentes. Frequentado por foodies e amantes de cerveja artesanal.</div>
+          <div class="place-card-meta"><span class="meta-pill">R$ 40–100/pessoa</span><span class="meta-pill">📍 Metrô Bresser-Mooca</span></div>
+        </div>
+        <div class="place-card">
+          <div class="place-card-type">Gastronomia de bairro</div>
+          <div class="place-card-name">Área Gastronômica do Tatuapé</div>
+          <div class="place-card-desc">Um dos polos gastronômicos mais completos da Zona Leste. Pizzarias tradicionais, hamburguerias, churrascarias e restaurantes italianos na Rua Curuçá e Av. Conselheiro Carrão. Ambiente agradável e descontraído de bairro.</div>
+          <div class="place-card-meta"><span class="meta-pill">R$ 30–100/pessoa</span><span class="meta-pill">📍 Metrô Tatuapé</span></div>
+        </div>
+        <div class="place-card">
+          <div class="place-card-type">Cervejaria artesanal</div>
+          <div class="place-card-name">Cervejaria Nacional da Mooca</div>
+          <div class="place-card-desc">Ideal para amantes de cerveja artesanal. Ambiente industrial, casual e animado. Cervejas produzidas no local, petiscos artesanais e hambúrgueres. Bairro da Mooca com sua identidade italiana e atmosfera industrial criativa.</div>
+          <div class="place-card-meta"><span class="meta-pill">R$ 40–80/pessoa</span><span class="meta-pill">📍 Metrô Bresser-Mooca</span></div>
+        </div>
+      </div>
+    </div>
+  </div><!-- /panel-zona-leste -->
+
+  <!-- ── AV. PAULISTA ── -->
+  <div class="region-panel" id="panel-paulista">
+    <div class="region-intro">
+      <div>
+        <div class="region-zone-badge">Marco da Cidade</div>
+        <div class="region-name">AV. PAULISTA</div>
+        <div class="region-neighborhoods">
+          <span class="nbhd-tag">Bela Vista</span><span class="nbhd-tag">Consolação</span><span class="nbhd-tag">Cerqueira César</span>
+        </div>
+      </div>
+      <div class="region-desc">O cartão-postal de São Paulo. O eixo cultural, financeiro e comercial mais importante da cidade. Nos domingos, é fechada para carros e se transforma em um grande espaço de lazer, cultura e eventos — uma das experiências mais emblemáticas de SP.</div>
+    </div>
+    <div class="cat-block">
+      <div class="cat-block-header"><span class="cat-block-icon">🏙️</span><span class="cat-block-title">Pontos da Paulista</span><span class="cat-block-count">3 lugares</span></div>
+      <div class="place-cards">
+        <div class="place-card">
+          <div class="place-card-type">Museu de Arte · Ícone arquitetônico</div>
+          <div class="place-card-name">MASP — Museu de Arte de SP</div>
+          <div class="place-card-desc">OBRIGATÓRIO — maior museu de arte da América Latina. Projeto de Lina Bo Bardi (1968), obra-prima arquitetônica. Acervo com Raphael, Renoir, Van Gogh, Monet, Rembrandt e grandes nomes da arte brasileira. O vão livre embaixo é palco de eventos e feiras. Às terças é gratuito.</div>
+          <div class="place-card-meta"><span class="meta-pill green">✓ Grátis às terças</span><span class="meta-pill">R$ 65 demais dias</span><span class="meta-pill">📍 Metrô Trianon-MASP</span><span class="meta-pill">⏱ 2–3h</span></div>
+        </div>
+        <div class="place-card">
+          <div class="place-card-type">Lazer urbano · Ciclofaixa</div>
+          <div class="place-card-name">Paulista aos Domingos</div>
+          <div class="place-card-desc">A avenida é fechada para carros todo domingo das 7h às 16h. Uma das experiências recorrentes mais emblemáticas de SP. Caminhe, pedale (bikes gratuitas pelo Bike Sampa), assista shows ao ar livre, visite o MASP e tome café nos bares da calçada. Leve protetor solar.</div>
+          <div class="place-card-meta"><span class="meta-pill green">✓ Gratuito</span><span class="meta-pill">Todo domingo 7h–16h</span></div>
+        </div>
+        <div class="place-card">
+          <div class="place-card-type">Centro de Cultura e Lazer</div>
+          <div class="place-card-name">SESC Avenida Paulista</div>
+          <div class="place-card-desc">O SESC oferece cultura de qualidade a preços populares — uma das melhores redes de cultura popular do mundo. Teatro, cinema, piscina, academia, exposições, cursos e shows. A maioria das atividades custa de R$ 0 a R$ 40. Há unidades SESC em toda a cidade.</div>
+          <div class="place-card-meta"><span class="meta-pill green">✓ R$ 0 a R$ 40</span><span class="meta-pill">📍 Metrô Brigadeiro ou Consolação</span></div>
+        </div>
+      </div>
+    </div>
+  </div><!-- /panel-paulista -->
+
+</section><!-- /guia-section -->
+
+<!-- ══════════════════════════════════════════
+     EVENTOS ANUAIS E SAZONAIS
+     ══════════════════════════════════════════ -->
+<section class="guia-section dark" id="eventos">
+  <div class="sec-header">
+    <h2 class="sec-title" style="color:var(--white)">EVENTOS<br><span class="red">ANUAIS</span><br><span class="light" style="color:rgba(255,255,255,0.35)">E sazonais</span></h2>
+  </div>
+  <div class="eventos-grid">
+    <div class="evento-card" style="background:#0d0005">
+      <div class="evento-epoca">Fevereiro / Março</div>
+      <div class="evento-name">Carnaval de Rua</div>
+      <div class="evento-desc">Um dos carnavais de rua mais crescentes do Brasil. Blocos famosos como "Então Brilha" e "Acadêmicos do Baixo Augusta" tomam Vila Madalena, Pinheiros e Consolação. Maioria dos blocos é gratuita — mas vá de metrô e atenção com pertences em multidões. Consulte SPTuris para calendário.</div>
+    </div>
+    <div class="evento-card" style="background:#00050d">
+      <div class="evento-epoca">Maio</div>
+      <div class="evento-name">Virada Cultural</div>
+      <div class="evento-desc">24 horas ininterruptas de shows, teatro, cinema e dança — tudo gratuito. Um dos maiores eventos culturais gratuitos do mundo. Acontece em toda a cidade com foco no Vale do Anhangabaú e MASP. Evento democrático e aberto a todos os públicos.</div>
+    </div>
+    <div class="evento-card" style="background:#0d0500">
+      <div class="evento-epoca">Junho / Julho</div>
+      <div class="evento-name">Festa Junina / Arraial de SP</div>
+      <div class="evento-desc">Festas juninas em todas as regiões — Vila Madalena, Pinheiros e unidades SESC têm programação especial. Comidas típicas: quentão, arroz doce, pamonha, milho cozido e canjica. Ambiente festivo, tradicional e familiar com entrada gratuita ou a preços populares.</div>
+    </div>
+    <div class="evento-card" style="background:#00030d">
+      <div class="evento-epoca">Julho</div>
+      <div class="evento-name">Festival do Japão</div>
+      <div class="evento-desc">O maior festival japonês fora do Japão, realizado no Expo Center Norte. Gastronomia, cosplay, música, artes marciais, cultura e muito mais. Entrada R$ 20–40. Ambiente animado e cheio — chegue cedo para aproveitar tudo.</div>
+    </div>
+    <div class="evento-card" style="background:#070d00">
+      <div class="evento-epoca">Julho / Agosto</div>
+      <div class="evento-name">Festa de Bon Odori</div>
+      <div class="evento-desc">Uma das maiores festas da cultura japonesa no Brasil, realizada na Praça da Liberdade. Danças tradicionais, comidas típicas, apresentações artísticas e decoração especial. Gratuita — mas com lotação alta. Experiência cultural única em SP.</div>
+    </div>
+    <div class="evento-card" style="background:#0d0005">
+      <div class="evento-epoca">Set / Out (anos pares)</div>
+      <div class="evento-name">Bienal de São Paulo</div>
+      <div class="evento-desc">Uma das maiores exposições de arte contemporânea do mundo, acontecendo desde 1951. Realizada no Pavilhão da Bienal dentro do Ibirapuera. Gratuita nas últimas semanas; R$ 30 nos primeiros meses. Ambiente internacional e de alto nível.</div>
+    </div>
+    <div class="evento-card" style="background:#00050d">
+      <div class="evento-epoca">Todo Sábado</div>
+      <div class="evento-name">Feira Benedito Calixto</div>
+      <div class="evento-desc">Uma das feiras mais charmosas de SP. Antiguidades, artesanato, gastronomia e ambiente de bairro muito agradável na Praça Benedito Calixto, em Pinheiros. Entrada gratuita, produtos de R$ 10 a R$ 500+. Combine com o Mercado de Pinheiros.</div>
+    </div>
+    <div class="evento-card" style="background:#0d0500">
+      <div class="evento-epoca">Todo Domingo</div>
+      <div class="evento-name">Feira da Liberdade</div>
+      <div class="evento-desc">Uma das feiras mais tradicionais de SP, funcionando desde 1975 na Praça da Liberdade. Comida asiática de rua, artesanato japonês, cerâmica, cosplay e produtos importados. Entrada gratuita, com atrações culturais japonesas frequentes.</div>
+    </div>
+    <div class="evento-card" style="background:#00030d">
+      <div class="evento-epoca">Ano todo</div>
+      <div class="evento-name">Jazz nos Parques</div>
+      <div class="evento-desc">Shows de jazz e MPB em parques municipais de SP ao longo do ano. Evento gratuito da Prefeitura, muito querido pelos moradores. Consulte a programação para saber os locais e datas de cada edição.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     ROTEIROS POR ESTAÇÃO
+     ══════════════════════════════════════════ -->
+<section class="estacoes-section" id="estacoes">
+  <div class="sec-header">
+    <h2 class="sec-title" style="color:var(--white)">ROTEIROS POR<br><span class="red">ESTAÇÃO DO ANO</span></h2>
+  </div>
+  <div class="estacoes-grid">
+    <div class="estacao-card">
+      <div class="estacao-icon">☀️</div>
+      <div class="estacao-name">Verão</div>
+      <div class="estacao-periodo">Dezembro · Janeiro · Fevereiro</div>
+      <div class="estacao-desc">Quente e chuvoso. Chuvas geralmente entre 15h–19h. Foco em parques pela manhã e vida noturna animada.</div>
+      <ul class="estacao-roles">
+        <li>Parque do Ibirapuera (manhã cedo)</li>
+        <li>Carnaval de Rua (Fevereiro)</li>
+        <li>Praias: Guarujá (1h30), Santos (1h), Ubatuba (2h30)</li>
+        <li>Shows na Concha Acústica do Ibirapuera</li>
+        <li>Ciclofaixa da Paulista aos domingos</li>
+      </ul>
+      <div class="estacao-dicas">
+        <div class="dicas-label">Dicas</div>
+        <ul class="estacao-roles">
+          <li>Chegue nos parques antes das 10h</li>
+          <li>Leve protetor solar e guarda-chuva compacto</li>
+        </ul>
+      </div>
+    </div>
+    <div class="estacao-card">
+      <div class="estacao-icon">🍂</div>
+      <div class="estacao-name">Outono</div>
+      <div class="estacao-periodo">Março · Abril · Maio</div>
+      <div class="estacao-desc">O melhor período para conhecer SP. Tempo ameno, menos chuva, dias ensolarados. Ideal para turismo intenso.</div>
+      <ul class="estacao-roles">
+        <li>Virada Cultural (Maio) — 24h gratuitas</li>
+        <li>Trilhas na Cantareira (clima perfeito)</li>
+        <li>Museus e galerias (Pinacoteca, MASP, CCBB)</li>
+        <li>Feiras de rua (Benedito Calixto, Pinheiros)</li>
+        <li>Passeios históricos no Centro</li>
+      </ul>
+      <div class="estacao-dicas">
+        <div class="dicas-label">Dicas</div>
+        <ul class="estacao-roles">
+          <li>Temperatura 15°C a 28°C — leve casaco para as noites</li>
+          <li>Melhor período para fotografar a cidade</li>
+        </ul>
+      </div>
+    </div>
+    <div class="estacao-card">
+      <div class="estacao-icon">❄️</div>
+      <div class="estacao-name">Inverno</div>
+      <div class="estacao-periodo">Junho · Julho · Agosto</div>
+      <div class="estacao-desc">Seco, dias ensolarados e noites frias. Perfeito para experiências indoor e gastronomia aconchegante.</div>
+      <ul class="estacao-roles">
+        <li>Campos do Jordão (2h30), Monte Verde (3h)</li>
+        <li>Fondue e vinho no frio</li>
+        <li>Shows no Teatro Municipal e Sala São Paulo</li>
+        <li>Festival do Japão (Julho)</li>
+        <li>Museus (MASP, MAM, Pinacoteca)</li>
+      </ul>
+      <div class="estacao-dicas">
+        <div class="dicas-label">Dicas</div>
+        <ul class="estacao-roles">
+          <li>Noites podem cair para 8°C a 12°C — casaco pesado</li>
+          <li>Ar muito seco — hidrate-se bem</li>
+        </ul>
+      </div>
+    </div>
+    <div class="estacao-card">
+      <div class="estacao-icon">🌸</div>
+      <div class="estacao-name">Primavera</div>
+      <div class="estacao-periodo">Setembro · Outubro · Novembro</div>
+      <div class="estacao-desc">Linda! Flores nos ipês amarelos e roxos pelas ruas. Clima agradável, manhãs frescas e tardes ensolaradas.</div>
+      <ul class="estacao-roles">
+        <li>Ipês floridos em Pinheiros, Jardins, Paulista</li>
+        <li>Piqueniques no Ibirapuera</li>
+        <li>Caminhadas na Cantareira</li>
+        <li>Bienal de Arte (anos pares)</li>
+        <li>Feiras ao ar livre</li>
+      </ul>
+      <div class="estacao-dicas">
+        <div class="dicas-label">Dicas</div>
+        <ul class="estacao-roles">
+          <li>Temperatura ideal: 18°C a 30°C</li>
+          <li>Chuvas voltam em Novembro</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MAP CTA -->
+<section class="map-section" id="roteiro-cta">
+  <div class="map-left">
+    <h2 class="map-big-title">MONTE SEU<span class="giant">ROTEIRO</span>DO SEU JEITO</h2>
+    <p class="map-desc">Escolha seus interesses, o tempo disponível e o orçamento. A gente monta o roteiro ideal pra você aproveitar São Paulo do seu modo.</p>
+    <button class="btn-primary" onclick="alert('Em breve: gerador de roteiros personalizado!')">Criar meu roteiro →</button>
+  </div>
+  <div class="map-right">
+    <div class="map-grid"></div>
+    <div class="map-glow"></div>
+    <div class="map-word">SP</div>
+    <div class="map-pin" style="top:32%;left:44%"><div class="pin-dot"></div><div class="pin-line"></div><div class="pin-label">Paulista</div></div>
+    <div class="map-pin" style="top:52%;left:34%"><div class="pin-dot"></div><div class="pin-line"></div><div class="pin-label">Ibirapuera</div></div>
+    <div class="map-pin" style="top:25%;left:60%"><div class="pin-dot"></div><div class="pin-line"></div><div class="pin-label">Centro</div></div>
+    <div class="map-pin" style="top:64%;left:54%"><div class="pin-dot"></div><div class="pin-line"></div><div class="pin-label">Vila Mada</div></div>
+    <div class="map-pin" style="top:40%;left:26%"><div class="pin-dot"></div><div class="pin-line"></div><div class="pin-label">Pinheiros</div></div>
+    <div class="map-pin" style="top:72%;left:40%"><div class="pin-dot"></div><div class="pin-line"></div><div class="pin-label">Liberdade</div></div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     DICAS GERAIS PARA TURISTAS
+     ══════════════════════════════════════════ -->
+<section class="dicas-gerais-section" id="dicas-gerais">
+  <div class="sec-header">
+    <h2 class="sec-title">DICAS GERAIS<br><span class="red">PARA TURISTAS</span></h2>
+  </div>
+  <div class="dicas-gerais-grid">
+    <div class="dica-bloco">
+      <div class="dica-bloco-icon">🚇</div>
+      <div class="dica-bloco-title">Transporte</div>
+      <ul>
+        <li><strong>Metrô e CPTM</strong> — a melhor forma de se locomover. Funciona das 4h40 às 0h. Bilhete unitário: ~R$ 5,00. Use o Cartão BOM para múltiplas viagens.</li>
+        <li><strong>Uber / 99</strong> — essencial para complementar o metrô, especialmente à noite. Sempre peça dentro de shoppings ou locais seguros.</li>
+        <li><strong>Bike Sampa</strong> — bicicletas públicas compartilhadas, ótimas para a Ciclofaixa da Paulista aos Domingos. Desbloqueio por app.</li>
+        <li><strong>Apps recomendados</strong> — Moovit e Google Maps funcionam bem para rotas de transporte público.</li>
+      </ul>
+    </div>
+    <div class="dica-bloco">
+      <div class="dica-bloco-icon">💰</div>
+      <div class="dica-bloco-title">Orçamento</div>
+      <table class="budget-table">
+        <tr><th>Perfil</th><th>Estimativa</th><th>O que inclui</th></tr>
+        <tr><td><span class="budget-badge">Barato</span></td><td>Até R$ 50/dia</td><td>Museus gratuitos, Ibirapuera, padarias, Mercadão, metrô</td></tr>
+        <tr><td><span class="budget-badge">Médio</span></td><td>R$ 50–200/dia</td><td>Restaurantes de bairro, museus pagos, bares noturnos, Uber</td></tr>
+        <tr><td><span class="budget-badge">Premium</span></td><td>R$ 200+/dia</td><td>Alta gastronomia, shows, hotéis de luxo, shopping de grife</td></tr>
+      </table>
+    </div>
+    <div class="dica-bloco">
+      <div class="dica-bloco-icon">🔒</div>
+      <div class="dica-bloco-title">Segurança</div>
+      <ul>
+        <li><strong>Bairros mais seguros</strong> — Jardins, Moema, Vila Madalena, Pinheiros, Itaim Bibi, Higienópolis e Vila Mariana.</li>
+        <li>Nunca use o celular na rua em áreas com baixo movimento.</li>
+        <li>No metrô, guarde o celular no bolso interior.</li>
+        <li>Evite andar sozinho à noite em áreas desconhecidas.</li>
+        <li>Use Uber à noite em vez de caminhar longas distâncias.</li>
+        <li>Em caso de abordagem: não reaja — entregue os pertences.</li>
+        <li><strong>Apps</strong> — Google Maps (offline salvo), SSP SP (ocorrências), 190 (PM).</li>
+      </ul>
+    </div>
+    <div class="dica-bloco">
+      <div class="dica-bloco-icon">🏨</div>
+      <div class="dica-bloco-title">Onde Ficar</div>
+      <ul>
+        <li><strong>Hotel Emiliano (Jardins)</strong> — 5 estrelas, ultra-luxuoso. R$ 1.500–4.000+/noite. Nota 9.0+ no Booking.</li>
+        <li><strong>Hotel Unique (Morumbi)</strong> — 5 estrelas, design arrojado em formato de disco voador. R$ 1.200–3.000/noite. Bar Skye no rooftop com vista panorâmica.</li>
+        <li><strong>Pousada dos Franceses (Vila Mada)</strong> — Hostel econômico. R$ 80–200/noite. Para mochileiros e viagem solo.</li>
+        <li>Pesquise também no Airbnb para ótimas opções em Vila Madalena e Pinheiros.</li>
+      </ul>
+    </div>
+    <div class="dica-bloco">
+      <div class="dica-bloco-icon">📋</div>
+      <div class="dica-bloco-title">Dicas Práticas</div>
+      <ul>
+        <li><strong>Língua</strong> — Português. Inglês é falado em hotéis e restaurantes premium, mas nem sempre em outros locais.</li>
+        <li><strong>Gorjeta</strong> — 10% de serviço é padrão (opcional legalmente).</li>
+        <li><strong>Água</strong> — Potável, mas a maioria prefere filtrada ou mineral.</li>
+        <li><strong>Clima</strong> — Leve sempre guarda-chuva compacto (chuvas são imprevisíveis).</li>
+        <li><strong>Chip</strong> — Claro, Vivo e TIM vendem chips por R$ 30–60.</li>
+        <li><strong>Horário</strong> — SP segue o horário de Brasília (GMT-3). Em verão pode haver horário de verão.</li>
+      </ul>
+    </div>
+    <div class="dica-bloco">
+      <div class="dica-bloco-icon">💡</div>
+      <div class="dica-bloco-title">Dias Gratuitos</div>
+      <ul>
+        <li><strong>Pinacoteca</strong> — Quinta-feira: gratuita</li>
+        <li><strong>MASP</strong> — Terça-feira: gratuito</li>
+        <li><strong>MAM</strong> — Terça-feira: gratuito</li>
+        <li><strong>Museu da Língua Portuguesa</strong> — Sábado: gratuito</li>
+        <li><strong>Museu Afro Brasil</strong> — Sábado: gratuito</li>
+        <li><strong>Museu do Ipiranga</strong> — Sábado: gratuito</li>
+        <li><strong>CCBB</strong> — Maioria das exposições: gratuita</li>
+        <li><strong>CCSP</strong> — Sempre: gratuito</li>
+        <li><strong>IMS</strong> — Sempre: gratuito</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     VOCABULÁRIO GASTRONÔMICO
+     ══════════════════════════════════════════ -->
+<section class="vocab-section">
+  <div class="sec-header">
+    <h2 class="sec-title" style="color:var(--white)">VOCABULÁRIO<br><span class="red">GASTRONÔMICO</span><br><span class="light" style="color:rgba(255,255,255,0.35)">Local</span></h2>
+  </div>
+  <div class="vocab-grid">
+    <div class="vocab-card">
+      <div class="vocab-word">Virado à Paulista</div>
+      <div class="vocab-def">O prato típico de São Paulo: feijão, arroz, couve, ovo, linguiça e costelinha. Encontrado em botequins e restaurantes populares de toda a cidade.</div>
+    </div>
+    <div class="vocab-card">
+      <div class="vocab-word">Mortadela do Mercadão</div>
+      <div class="vocab-def">O sanduíche icônico do Mercado Municipal — obrigatório experimentar. Um símbolo gastronômico da cidade que já virou atração turística por si só.</div>
+    </div>
+    <div class="vocab-card">
+      <div class="vocab-word">Coxinha</div>
+      <div class="vocab-def">Bolinha de massa frita recheada com frango desfiado — onipresente nas padarias e lanchonetes de SP. Um dos salgados mais queridos do paulistano.</div>
+    </div>
+    <div class="vocab-card">
+      <div class="vocab-word">Brigadeiro</div>
+      <div class="vocab-def">Doce de cacau condensado, típico brasileiro. Encontre nas confeitarias e festas pela cidade. Existem versões gourmet em lojas especializadas.</div>
+    </div>
+    <div class="vocab-card">
+      <div class="vocab-word">Chopp</div>
+      <div class="vocab-def">Cerveja de pressão — padrão nos bares de SP. Pedir um "chopp" é a forma correta de pedir cerveja tirada diretamente no barril.</div>
+    </div>
+    <div class="vocab-card">
+      <div class="vocab-word">Boteco / Botequim</div>
+      <div class="vocab-def">Bar popular, geralmente simples e descontraído, com boa comida de petiscos (bolinhos, pastéis, torresmos). Coração da vida social paulistana.</div>
+    </div>
+  </div>
+</section>
+
+<!-- DICAS (original) -->
+<section class="dicas-section" id="dicas">
+  <div class="sec-header">
+    <h2 class="sec-title">DICAS PARA<br><span class="red">APROVEITAR MELHOR</span></h2>
+  </div>
+  <div class="dicas-grid">
+    <div class="dica-card">
+      <div class="dica-icon">🚇</div>
+      <div class="dica-title">Transporte</div>
+      <div class="dica-text">O metrô é a forma mais rápida de se locomover. Integrado com ônibus, cobre a maior parte dos pontos turísticos. Evite rush das 7h–9h e 17h–19h. Bilhete unitário ~R$ 5.</div>
+    </div>
+    <div class="dica-card">
+      <div class="dica-icon">🌦️</div>
+      <div class="dica-title">Melhores Épocas</div>
+      <div class="dica-text">Outono (mar–mai) é o melhor período: clima ameno e menos chuva. Verão tem vida noturna mais animada. Inverno é ótimo para museus e gastronomia aconchegante. SP é boa o ano todo.</div>
+    </div>
+    <div class="dica-card">
+      <div class="dica-icon">🏨</div>
+      <div class="dica-title">Onde Ficar</div>
+      <div class="dica-text">Jardins e Pinheiros são seguros e cheios de opções. Vila Madalena para quem quer vida noturna a pé. Centro para quem quer cultura intensa. Moema para tranquilidade e natureza.</div>
+    </div>
+    <div class="dica-card">
+      <div class="dica-icon">💰</div>
+      <div class="dica-title">Dicas Econômicas</div>
+      <div class="dica-text">MASP, Pinacoteca e muitos museus têm entrada gratuita às terças ou sábados. Mercadão tem comida farta e barata. Feiras de bairro são gratuitas e autênticas. SESC oferece cultura popular a preços baixíssimos.</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="brand-logo">SP<span class="dot"></span>DESCUBRA</div>
+      <p class="brand-desc">O guia definitivo de São Paulo para turistas e moradores que querem descobrir a cidade de um jeito novo. Versão 1.0 | 2025.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Explorar</h4>
+      <ul>
+        <li>Pontos turísticos</li>
+        <li>Gastronomia</li>
+        <li>Vida noturna</li>
+        <li>Arte e cultura</li>
+        <li>Parques e natureza</li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Roteiros</h4>
+      <ul>
+        <li>1 dia em SP</li>
+        <li>Fim de semana</li>
+        <li>Para família</li>
+        <li>Para casal</li>
+        <li>SP escondida</li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Informações</h4>
+      <ul>
+        <li>Como chegar</li>
+        <li>Onde ficar</li>
+        <li>Segurança</li>
+        <li>Transportes</li>
+        <li>Sobre o projeto</li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 SP Descubra · São Paulo, Brasil · Guia Versão 1.0</p>
+    <p>Feito com <span class="red-text">♥</span> para quem ama SP</p>
+  </div>
+</footer>
+
+<script>
+// ─── PLACES DATA ───
+const places=[
+  {id:1,title:'Parque Ibirapuera',cat:'Parque & Natureza',desc:'O pulmão de SP. Museus, lagoa, ciclovia e muito verde no coração da cidade. Projetado por Oscar Niemeyer.',quem:['familia','casal','sozinho'],hora:['dia'],preco:'gratis',vibe:'calmo',badge:'Obrigatório',tags:['Ao ar livre','Museus','Natureza'],color:'#0d2e1a',icon:'🌿',feat:true},
+  {id:2,title:'MASP',cat:'Arte & Cultura',desc:'Maior museu de arte da América Latina, suspenso sobre a Paulista. Acervo com Van Gogh, Renoir e mais. Grátis às terças.',quem:['casal','sozinho','amigos'],hora:['dia'],preco:'barato',vibe:'calmo',badge:null,tags:['Arte','Paulista','Arquitetura'],color:'#0f0a2e',icon:'🎨'},
+  {id:3,title:'Mercado Municipal',cat:'Gastronomia',desc:'O famoso Mercadão com o sanduíche de mortadela — símbolo da cidade. Frutas exóticas e gastronomia popular.',quem:['familia','amigos','casal'],hora:['dia'],preco:'barato',vibe:null,badge:null,tags:['Comida','Histórico','Popular'],color:'#2e1500',icon:'🥩'},
+  {id:4,title:'Beco do Batman',cat:'Arte Urbana',desc:'Galeria a céu aberto na Vila Madalena com grafites que se renovam. Cada visita é uma experiência diferente.',quem:['amigos','casal','sozinho'],hora:['dia'],preco:'gratis',vibe:'calmo',badge:'Trending',tags:['Street Art','Vila Mada','Foto'],color:'#0a1525',icon:'🎭'},
+  {id:5,title:'Ó do Borogodó',cat:'Vida Noturna',desc:'O bar de samba mais tradicional de SP, na Vila Madalena. Samba, MPB e Bossa Nova ao vivo toda semana.',quem:['amigos','casal'],hora:['noite'],preco:'medio',vibe:null,badge:null,tags:['Samba','Bar','Vila Mada'],color:'#1f0500',icon:'🎵'},
+  {id:6,title:'Terraço Itália',cat:'Gastronomia Premium',desc:'Vista 360° do skyline de SP do topo do edifício mais icônico do centro. Imperdível ao entardecer.',quem:['casal','amigos'],hora:['noite','dia'],preco:'premium',vibe:null,badge:'Premium',tags:['Vista','Restaurante','Romântico'],color:'#1a1500',icon:'🌆'},
+  {id:7,title:'Museu da Língua Portuguesa',cat:'Cultura',desc:'Dentro da Estação da Luz, experiência imersiva e interativa sobre o português — único no mundo. Sábados grátis.',quem:['familia','sozinho','casal'],hora:['dia'],preco:'barato',vibe:'calmo',badge:'Escondido',tags:['Interativo','Centro','Histórico'],color:'#0a2222',icon:'📚'},
+  {id:8,title:'Liberdade',cat:'Bairro Cultural',desc:'O maior bairro japonês fora do Japão. Gastronomia asiática, feira semanal, cultura e lanternes vermelhos.',quem:['familia','amigos','casal'],hora:['dia'],preco:'barato',vibe:null,badge:null,tags:['Japonês','Comida','Compras'],color:'#1a0a1a',icon:'🏮'},
+  {id:9,title:'Pinacoteca do Estado',cat:'Arte',desc:'Um dos melhores museus do Brasil com maior acervo de arte brasileira do séc. XIX e XX. Grátis às quintas.',quem:['sozinho','casal'],hora:['dia'],preco:'barato',vibe:'calmo',badge:'Pérola',tags:['Arte','Parque da Luz','Paz'],color:'#122200',icon:'🖼️'},
+  {id:10,title:'Vila Madalena',cat:'Bairro Boêmio',desc:'O bairro mais artístico de SP. Grafites, bares autorais, cafés criativos, Beco do Batman e noite agitada.',quem:['amigos','casal'],hora:['noite','dia'],preco:'medio',vibe:null,badge:null,tags:['Boêmio','Bares','Arte'],color:'#1a0020',icon:'🎸'},
+  {id:11,title:'Parque Trianon',cat:'Natureza & Silêncio',desc:'Oásis de Mata Atlântica em plena Paulista. Perfeito para um respiro entre o ritmo intenso da cidade. Gratuito.',quem:['sozinho','casal'],hora:['dia'],preco:'gratis',vibe:'calmo',badge:'Calmo',tags:['Natureza','Paulista','Silêncio'],color:'#0a1a0a',icon:'🌲'},
+  {id:12,title:'Cantareira',cat:'Ecoturismo',desc:'Maior reserva de Mata Atlântica urbana do mundo. Trilhas, mirante com vista incrível de SP e natureza preservada.',quem:['amigos','familia','sozinho'],hora:['dia'],preco:'gratis',vibe:'calmo',badge:'Natureza',tags:['Trilha','Natureza','Vista'],color:'#0a200a',icon:'🌳'},
+];
+
+const roteiros=[
+  {title:'SP em 1 Dia',cat:'Roteiro Intenso · 1 Dia',meta:'Catedral, Mercadão, Ibirapuera, MASP',tags:['Sé','Mercadão','Ibirapuera','MASP'],bg:'#1a0005'},
+  {title:'Fim de Semana Romântico',cat:'Roteiro Casal · 2 Dias',meta:'Restaurantes, passeios e atmosfera',tags:['Maní','Beco Batman','Vila Mada','Trianon'],bg:'#05051a'},
+  {title:'SP Gastronômica',cat:'Gastronomia · Qualquer dia',meta:'A melhor cozinha da América Latina',tags:['Mercadão','Liberdade','Jardins','Pinheiros'],bg:'#1a0800'},
+  {title:'Noite e Madrugada',cat:'Vida Noturna · A partir das 20h',meta:'A cidade que nunca dorme de verdade',tags:['Vila Mada','Ó do Borogodó','Baixo Augusta'],bg:'#00001a'},
+  {title:'Arte & Cultura',cat:'Cultura · Final de semana',meta:'Museus, galerias e arte de rua',tags:['MASP','Pinacoteca','Museu da Língua'],bg:'#0a1200'},
+  {title:'SP Escondida',cat:'Off-the-beaten · 1–2 dias',meta:'Lugares que os turistas não conhecem',tags:['Bixiga','Jardim da Luz','Cantareira'],bg:'#0a0a00'},
+];
+
+// ─── FILTERS ───
+const F={quem:'todos',hora:'todos',preco:'todos',vibe:null};
+function pick(el,group){document.querySelectorAll(`[data-g="${group}"]`).forEach(c=>c.classList.remove('on'));el.classList.add('on');F[group]=el.dataset.v;render()}
+function pickVibe(el){const wasOn=el.classList.contains('on');el.classList.toggle('on');F.vibe=wasOn?null:'calmo';render()}
+function render(){
+  const grid=document.getElementById('grid');
+  let list=places.filter(p=>{
+    if(F.quem!=='todos'&&!p.quem.includes(F.quem))return false;
+    if(F.hora!=='todos'&&!p.hora.includes(F.hora))return false;
+    if(F.preco!=='todos'&&p.preco!==F.preco)return false;
+    if(F.vibe&&p.vibe!==F.vibe)return false;
+    return true;
+  });
+  if(!list.length){grid.innerHTML=`<div class="no-results"><div class="no-results-title">NENHUM LUGAR</div><div class="no-results-sub">Tente outros filtros para encontrar algo incrível.</div></div>`;return}
+  const priceStr=p=>p.preco==='gratis'?'Grátis':p.preco==='barato'?'$':p.preco==='medio'?'$$':'$$$';
+  grid.innerHTML=list.map((p,i)=>{
+    const big=i===0&&list.length>1&&p.feat;
+    return`<div class="card${big?' featured':''}" title="${p.title}">
+      <div class="card-thumb"><div class="card-thumb-inner" style="background:${p.color}"><div class="thumb-label-bg">${p.cat.split(' ')[0]}</div><div class="thumb-icon">${p.icon}</div></div>${p.badge?`<div class="card-badge">${p.badge}</div>`:''}<div class="card-price-tag">${priceStr(p)}</div></div>
+      <div class="card-body"><div class="card-cat">${p.cat}</div><div class="card-name">${p.title}</div><div class="card-desc">${p.desc}</div><div class="card-tags">${p.tags.map(t=>`<span class="tag">${t}</span>`).join('')}</div></div>
+    </div>`;
+  }).join('');
+}
+
+// ─── ROTEIROS ───
+function buildRoteiros(){
+  const list=document.getElementById('rotList');
+  list.innerHTML=roteiros.map((r,i)=>`<div class="rot-item${i===0?' active':''}" onclick="selectRot(${i})"><div class="rot-num">0${i+1}</div><div class="rot-info"><div class="rot-name">${r.title}</div><div class="rot-meta">${r.meta}</div></div><div class="rot-arrow">→</div></div>`).join('');
+  selectRot(0);
+}
+function selectRot(i){
+  document.querySelectorAll('.rot-item').forEach((el,j)=>el.classList.toggle('active',j===i));
+  const r=roteiros[i];
+  document.getElementById('rotTitle').textContent=r.title;
+  document.getElementById('rotCat').textContent=r.cat;
+  document.getElementById('rotCard').style.background=`linear-gradient(145deg,${r.bg},#2d0010)`;
+  document.getElementById('rotTags').innerHTML=r.tags.map(t=>`<div class="rot-card-tag">${t}</div>`).join('');
+  document.getElementById('rotBg').textContent=r.title.split(' ').slice(-2).join(' ');
+}
+
+// ─── REGION TABS ───
+function showRegion(id){
+  document.querySelectorAll('.region-tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.region-panel').forEach(p=>p.classList.remove('active'));
+  event.target.classList.add('active');
+  document.getElementById('panel-'+id).classList.add('active');
+}
+
+// ─── BAIRRO ACCORDIONS ───
+function toggleBairro(header){
+  const body=header.nextElementSibling;
+  header.classList.toggle('open');
+  body.classList.toggle('open');
+}
+
+// ─── NAV SCROLL ───
+window.addEventListener('scroll',()=>{document.getElementById('mainNav').classList.toggle('scrolled',window.scrollY>80)});
+
+// ─── INIT ───
+render();
+buildRoteiros();
+</script>
+</body>
+</html>
