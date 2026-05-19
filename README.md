@@ -26,6 +26,22 @@ A proposta é simples: ajudar qualquer pessoa a descobrir o que fazer em SP de a
 | **Estações do Ano** | Como SP se comporta em cada época e o que fazer |
 | **Dicas Práticas** | Transporte, segurança, orçamento, vocabulário paulistano |
 | **Vocabulário Paulista** | Glossário com gírias e expressões locais |
+- **Estilos Premium (CSS)**: Adicionamos um design glassmorphic escuro moderno para o modal. Ele possui gradiente suave, sombras brilhantes vermelhas, animações dinâmicas de slide-in para cada passo e adaptação total a dispositivos móveis (100% responsivo).
+- **Estrutura HTML do Modal**: Criamos um modal com uma barra de progresso no topo, botões de Voltar/Continuar intuitivos, e um questionário multi-passo (5 etapas):
+  1. *Acompanhante*: Solo, Casal, Amigos ou Família.
+  2. *Vibes*: Parques/Ar Livre, Cultura/História, Gastronomia, Vida Noturna/Música. (Seleção múltipla)
+  3. *Orçamento*: Econômico, Moderado ou Premium.
+  4. *Períodos*: Dia, Noite ou Ambos. (Seleção múltipla)
+  5. *Duração*: 1 Dia, 2 Dias ou 3 Dias.
+- **Renderização Visual Premium (Imagens dos Lugares)**:
+  - Mapeamos e integramos o novo diretório de fotos `image/` diretamente ao array global `places` no arquivo `index.html`.
+  - Substituímos as cores sólidas antigas das capas dos cards por imagens reais de alta definição correspondentes a cada local (ex: MASP, Beco do Batman, Liberdade, Mercadão, etc.).
+  - Adicionamos uma sobreposição de gradiente linear translúcido (`rgba(0,0,0,0.15)` a `rgba(0,0,0,0.55)`) para garantir excelente legibilidade dos textos e selos.
+  - Implementamos um badge de ícone com efeito **glassmorphic** suspenso (fundo semi-transparente desfocado com bordas sutis brilhantes) para um visual moderno e sofisticado.
+- **Lógica e Inteligência (JavaScript)**:
+  - **Algoritmo de Match e Relevância**: O JavaScript calcula dinamicamente uma pontuação para cada local cadastrado no array global `places`. Ele pontua com base na compatibilidade com o tipo de acompanhante (+35 pts), orçamento (+30 pts, com penalidades severas para locais de luxo em orçamentos econômicos), períodos (+20 pts) e número de vibes compatíveis (+15 pts por match).
+  - **Roteirização com Otimização Logística (Geográfica)**: Para poupar o usuário do trânsito caótico de São Paulo, o JavaScript analisa se as atrações do dia compartilham a mesma região (ex: Avenida Paulista, Centro, Pinheiros ou Vila Madalena). Se sim, ele as agrupa no mesmo dia e exibe um alerta de otimização geográfica: *"⚡ Logística Otimizada: Ambos os passeios deste dia ficam na mesma região! Você economizará tempo de trânsito!"*
+  - **Itinerário Visual e Conexão Supabase**: Renderiza o itinerário estruturado por dia e turno, mostra a porcentagem média de "Match" do roteiro criado e envia automaticamente os dados em background para o Supabase via `/api/form`, exibindo um feedback visual de sucesso de salvamento na tela.
 
 ---
 
