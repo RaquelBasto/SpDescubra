@@ -632,6 +632,22 @@ footer{background:var(--black);color:var(--white);padding:5rem 3.5rem 2.5rem;bor
   align-items: center;
   clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));
 }
+.itinerary-slot .card-thumb {
+  width: 90px;
+  height: 90px;
+  border-radius: 6px;
+  overflow: hidden;
+  flex-shrink: 0;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+.itinerary-slot .card-thumb-inner {
+  height: 100%;
+  width: 100%;
+  transition: transform 0.55s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.itinerary-slot:hover .card-thumb-inner {
+  transform: scale(1.06);
+}
 .slot-time-badge {
   background: rgba(255, 255, 255, 0.06);
   border: 1px solid rgba(255, 255, 255, 0.1);
@@ -2592,6 +2608,11 @@ function renderItineraryResults(itinerary, scoredPlaces) {
       html += `
         <div class="itinerary-slot">
           <div class="slot-time-badge">☀️ DIA</div>
+          <div class="card-thumb">
+            <div class="card-thumb-inner" style="background-color: ${p.color || '#1a1a1a'}; background-image: url('image/${p.img}'); background-size: cover; background-position: center;">
+              <div style="position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(0,0,0,0.1) 30%, rgba(0,0,0,0.4) 100%);"></div>
+            </div>
+          </div>
           <div class="slot-info">
             <div class="slot-cat">${p.cat}</div>
             <div class="slot-name">${p.icon} ${p.title}</div>
@@ -2606,6 +2627,11 @@ function renderItineraryResults(itinerary, scoredPlaces) {
       html += `
         <div class="itinerary-slot">
           <div class="slot-time-badge">🌙 NOITE</div>
+          <div class="card-thumb">
+            <div class="card-thumb-inner" style="background-color: ${p.color || '#1a1a1a'}; background-image: url('image/${p.img}'); background-size: cover; background-position: center;">
+              <div style="position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(0,0,0,0.1) 30%, rgba(0,0,0,0.4) 100%);"></div>
+            </div>
+          </div>
           <div class="slot-info">
             <div class="slot-cat">${p.cat}</div>
             <div class="slot-name">${p.icon} ${p.title}</div>
